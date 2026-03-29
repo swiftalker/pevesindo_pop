@@ -1,0 +1,17 @@
+{
+	frankenphp
+	# Gunakan CA lokal (bukan Let's Encrypt)
+	acme_ca local
+	auto_https disable_redirects
+}
+
+luna-rin.test {
+	root * public
+	php_server {
+		resolve_root_symlink
+	}
+	encode zstd gzip
+	php_server
+	file_server
+	tls internal
+}
