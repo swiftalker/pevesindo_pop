@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block title %}Laporan Penjualan{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mt-4 mb-4">
+    <h4 class="mb-0 fw-semibold"><i class="bi bi-bar-chart me-2 text-success"></i>Laporan Penjualan</h4>
+</div>
+
+<!-- Filter -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-body py-2">
+        <form method="get" class="d-flex gap-2 align-items-center">
+            <label class="form-label mb-0 fw-semibold me-2">Bulan:</label>
+            <input type="month" name="bulan" value="{{ bulan }}" class="form-control form-control-sm" style="max-width:180px;">
+            <button type="submit" class="btn btn-sm btn-primary">
+                <i class="bi bi-search me-1"></i>Tampilkan
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Summary -->
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm text-center">
+            <div class="card-body">
+                <div class="text-muted small">Jumlah Order Selesai</div>
+                <div class="display-6 fw-bold text-primary">{{ orders | length }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm text-center">
+            <div class="card-body">
+                <div class="text-muted small">Total Item Terjual</div>
+                <div class="display-6 fw-bold text-info">
+                    {{ produk_summary.values() | sum(attribute='qty') }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm text-center">
+            <div class="card-body">
+                <div class="text-muted small">Total Penjualan</div>
+                <div class="fs-4 fw-bold text-success">{{ total | rupiah }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Order List -->
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent fw-semibold">Daftar Order Selesai</div>
+            <div class="card-body p-0">
+                {% if orders %}
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0 align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Nomor</th>
+                                <th>Tanggal</th>
+                                <th>Pelanggan</th>
+                                <th class="text-end">Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for o in orders %}
+                        <tr>
+                            <td class="fw-semibold">{{ o.nomor }}</td>
+                            <td>{{ o.tanggal.strftime('%d/%m/%Y') }}</td>
+                            <td>{{ o.pelanggan.nama }}</td>
+                            <td class="text-end">{{ o.total | rupiah }}</td>
+                            <td>
+                                <a href="{{ url_for('order_detail', id=o.id) }}"
+                                   class="btn btn-sm btn-outline-secondary">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot class="table-light">
+                            <tr>
+                                <td colspan="3" class="fw-bold text-end">Total</td>
+                                <td class="fw-bold text-end text-success">{{ total | rupiah }}</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center py-5 text-muted">
+                    <i class="bi bi-bar-chart fs-1 d-block mb-2"></i>
+                    Tidak ada order selesai untuk periode ini.
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Per-product summary -->
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent fw-semibold">Per Produk</div>
+            <div class="card-body p-0">
+                {% if produk_summary %}
+                <ul class="list-group list-group-flush">
+                    {% for pid, ps in produk_summary.items() | sort(attribute='1.total', reverse=True) %}
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="fw-semibold small">{{ ps.nama }}</div>
+                            <span class="text-muted small">{{ ps.qty }} item</span>
+                        </div>
+                        <span class="fw-semibold small text-success">{{ ps.total | rupiah }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <div class="text-center py-4 text-muted small">Tidak ada data.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

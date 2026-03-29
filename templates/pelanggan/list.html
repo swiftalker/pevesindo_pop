@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Daftar Pelanggan{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mt-4 mb-4">
+    <h4 class="mb-0 fw-semibold"><i class="bi bi-people me-2 text-info"></i>Pelanggan</h4>
+    <a href="{{ url_for('pelanggan_tambah') }}" class="btn btn-primary">
+        <i class="bi bi-plus-lg me-1"></i>Tambah Pelanggan
+    </a>
+</div>
+
+<div class="card border-0 shadow-sm mb-3">
+    <div class="card-body py-2">
+        <form method="get" class="d-flex gap-2">
+            <input type="text" name="search" value="{{ search }}" class="form-control form-control-sm"
+                   placeholder="Cari kode atau nama pelanggan…">
+            <button class="btn btn-sm btn-outline-primary" type="submit">
+                <i class="bi bi-search"></i>
+            </button>
+            {% if search %}
+            <a href="{{ url_for('pelanggan_list') }}" class="btn btn-sm btn-outline-secondary">Reset</a>
+            {% endif %}
+        </form>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-0">
+        {% if pelanggan_list %}
+        <div class="table-responsive">
+            <table class="table table-hover mb-0 align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Kode</th>
+                        <th>Nama Pelanggan</th>
+                        <th>Telepon</th>
+                        <th>Email</th>
+                        <th>Alamat</th>
+                        <th class="text-center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for p in pelanggan_list %}
+                <tr>
+                    <td><span class="badge bg-light text-dark border">{{ p.kode }}</span></td>
+                    <td class="fw-semibold">{{ p.nama }}</td>
+                    <td>{{ p.telepon or '-' }}</td>
+                    <td>{{ p.email or '-' }}</td>
+                    <td><small>{{ p.alamat | truncate(50) if p.alamat else '-' }}</small></td>
+                    <td class="text-center">
+                        <a href="{{ url_for('pelanggan_edit', id=p.id) }}"
+                           class="btn btn-sm btn-outline-primary me-1" title="Edit">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <form method="post" action="{{ url_for('pelanggan_hapus', id=p.id) }}"
+                              class="d-inline"
+                              onsubmit="return confirm('Hapus pelanggan {{ p.nama }}?')">
+                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Hapus">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-5 text-muted">
+            <i class="bi bi-person-x fs-1 d-block mb-2"></i>
+            {% if search %}
+                Tidak ada pelanggan yang cocok dengan pencarian "<strong>{{ search }}</strong>".
+            {% else %}
+                Belum ada pelanggan. <a href="{{ url_for('pelanggan_tambah') }}">Tambah pelanggan</a>.
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

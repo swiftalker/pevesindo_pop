@@ -1,0 +1,48 @@
+/* Pevesindo POP – custom styles */
+
+body {
+    background-color: #f5f6fa;
+    font-size: 0.925rem;
+}
+
+.navbar-brand {
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+}
+
+.card {
+    border-radius: 0.75rem;
+}
+
+.card-header {
+    border-radius: 0.75rem 0.75rem 0 0 !important;
+    padding: 0.75rem 1.25rem;
+}
+
+footer.footer {
+    font-size: 0.8rem;
+}
+
+/* Status badge pill */
+.badge.rounded-pill {
+    font-size: 0.78em;
+    padding: 0.4em 0.85em;
+}
+
+/* Table tweaks */
+.table thead th {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #6c757d;
+}
+
+/* Summary card icon circles */
+.rounded-circle {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}

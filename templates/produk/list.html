@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}Daftar Produk{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mt-4 mb-4">
+    <h4 class="mb-0 fw-semibold"><i class="bi bi-box-seam me-2 text-primary"></i>Produk</h4>
+    <a href="{{ url_for('produk_tambah') }}" class="btn btn-primary">
+        <i class="bi bi-plus-lg me-1"></i>Tambah Produk
+    </a>
+</div>
+
+<!-- Search -->
+<div class="card border-0 shadow-sm mb-3">
+    <div class="card-body py-2">
+        <form method="get" class="d-flex gap-2">
+            <input type="text" name="search" value="{{ search }}" class="form-control form-control-sm"
+                   placeholder="Cari kode atau nama produk…">
+            <button class="btn btn-sm btn-outline-primary" type="submit">
+                <i class="bi bi-search"></i>
+            </button>
+            {% if search %}
+            <a href="{{ url_for('produk_list') }}" class="btn btn-sm btn-outline-secondary">Reset</a>
+            {% endif %}
+        </form>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-0">
+        {% if produk_list %}
+        <div class="table-responsive">
+            <table class="table table-hover mb-0 align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Kode</th>
+                        <th>Nama Produk</th>
+                        <th>Satuan</th>
+                        <th class="text-end">Harga Jual</th>
+                        <th class="text-center">Stok</th>
+                        <th class="text-center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for p in produk_list %}
+                <tr>
+                    <td><span class="badge bg-light text-dark border">{{ p.kode }}</span></td>
+                    <td>
+                        <div class="fw-semibold">{{ p.nama }}</div>
+                        {% if p.keterangan %}
+                        <small class="text-muted">{{ p.keterangan | truncate(60) }}</small>
+                        {% endif %}
+                    </td>
+                    <td>{{ p.satuan }}</td>
+                    <td class="text-end fw-semibold">{{ p.harga_jual | rupiah }}</td>
+                    <td class="text-center">
+                        <span class="badge {% if p.stok <= 10 %}bg-danger{% elif p.stok <= 30 %}bg-warning text-dark{% else %}bg-success{% endif %}">
+                            {{ p.stok }}
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <a href="{{ url_for('produk_edit', id=p.id) }}"
+                           class="btn btn-sm btn-outline-primary me-1" title="Edit">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <form method="post" action="{{ url_for('produk_hapus', id=p.id) }}"
+                              class="d-inline"
+                              onsubmit="return confirm('Hapus produk {{ p.nama }}?')">
+                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Hapus">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-5 text-muted">
+            <i class="bi bi-box fs-1 d-block mb-2"></i>
+            {% if search %}
+                Tidak ada produk yang cocok dengan pencarian "<strong>{{ search }}</strong>".
+            {% else %}
+                Belum ada produk. <a href="{{ url_for('produk_tambah') }}">Tambah produk</a>.
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

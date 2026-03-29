@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% block title %}Detail Order {{ order.nomor }}{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center mt-4 mb-4 gap-3">
+    <a href="{{ url_for('order_list') }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left"></i>
+    </a>
+    <h4 class="mb-0 fw-semibold">
+        <i class="bi bi-cart3 me-2 text-warning"></i>
+        Order {{ order.nomor }}
+    </h4>
+    <span class="badge rounded-pill fs-6
+        {% if order.status == 'selesai' %}bg-success
+        {% elif order.status == 'confirmed' %}bg-warning text-dark
+        {% elif order.status == 'batal' %}bg-danger
+        {% else %}bg-secondary{% endif %}">
+        {{ order.status | title }}
+    </span>
+</div>
+
+<div class="row g-4">
+    <!-- Detail -->
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-transparent fw-semibold">Informasi Order</div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="text-muted small">Nomor Order</div>
+                        <div class="fw-semibold">{{ order.nomor }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-muted small">Tanggal</div>
+                        <div>{{ order.tanggal.strftime('%d %B %Y') }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-muted small">Pelanggan</div>
+                        <div class="fw-semibold">{{ order.pelanggan.nama }}</div>
+                        <div class="text-muted small">{{ order.pelanggan.kode }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-muted small">Dibuat</div>
+                        <div>{{ order.created_at.strftime('%d %B %Y %H:%M') }}</div>
+                    </div>
+                    {% if order.catatan %}
+                    <div class="col-12">
+                        <div class="text-muted small">Catatan</div>
+                        <div>{{ order.catatan }}</div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Items -->
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent fw-semibold">Detail Produk</div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table mb-0 align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Produk</th>
+                                <th class="text-center">Qty</th>
+                                <th class="text-end">Harga</th>
+                                <th class="text-center">Diskon</th>
+                                <th class="text-end">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for d in order.detail_orders %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>
+                                <div class="fw-semibold">{{ d.produk.nama }}</div>
+                                <small class="text-muted">{{ d.produk.kode }} · {{ d.produk.satuan }}</small>
+                            </td>
+                            <td class="text-center">{{ d.qty }}</td>
+                            <td class="text-end">{{ d.harga | rupiah }}</td>
+                            <td class="text-center">
+                                {% if d.diskon %}{{ d.diskon }}%{% else %}-{% endif %}
+                            </td>
+                            <td class="text-end fw-semibold">{{ d.subtotal | rupiah }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot class="table-light">
+                            <tr>
+                                <td colspan="5" class="text-end fw-bold">Total</td>
+                                <td class="text-end fw-bold fs-5 text-success">{{ order.total | rupiah }}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="col-lg-4">
+        <!-- Status update -->
+        <div class="card border-0 shadow-sm mb-3">
+            <div class="card-header bg-transparent fw-semibold">Update Status</div>
+            <div class="card-body">
+                <form method="post" action="{{ url_for('order_update_status', id=order.id) }}">
+                    <div class="mb-3">
+                        <select name="status" class="form-select">
+                            <option value="draft" {% if order.status == 'draft' %}selected{% endif %}>Draft</option>
+                            <option value="confirmed" {% if order.status == 'confirmed' %}selected{% endif %}>Confirmed</option>
+                            <option value="selesai" {% if order.status == 'selesai' %}selected{% endif %}>Selesai</option>
+                            <option value="batal" {% if order.status == 'batal' %}selected{% endif %}>Batal</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-arrow-repeat me-1"></i>Update Status
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Other actions -->
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent fw-semibold">Aksi</div>
+            <div class="card-body d-flex flex-column gap-2">
+                {% if order.status not in ('selesai', 'batal') %}
+                <a href="{{ url_for('order_edit', id=order.id) }}" class="btn btn-outline-primary">
+                    <i class="bi bi-pencil me-1"></i>Edit Order
+                </a>
+                {% endif %}
+                <a href="{{ url_for('order_list') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-list me-1"></i>Daftar Order
+                </a>
+                {% if order.status != 'selesai' %}
+                <form method="post" action="{{ url_for('order_hapus', id=order.id) }}"
+                      onsubmit="return confirm('Hapus order {{ order.nomor }}?')">
+                    <button type="submit" class="btn btn-outline-danger w-100">
+                        <i class="bi bi-trash me-1"></i>Hapus Order
+                    </button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

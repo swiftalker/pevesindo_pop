@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block title %}Daftar Order{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mt-4 mb-4">
+    <h4 class="mb-0 fw-semibold"><i class="bi bi-cart3 me-2 text-warning"></i>Order Penjualan</h4>
+    <a href="{{ url_for('order_tambah') }}" class="btn btn-primary">
+        <i class="bi bi-plus-lg me-1"></i>Buat Order
+    </a>
+</div>
+
+<!-- Filter -->
+<div class="card border-0 shadow-sm mb-3">
+    <div class="card-body py-2">
+        <form method="get" class="d-flex flex-wrap gap-2 align-items-center">
+            <input type="text" name="search" value="{{ search }}" class="form-control form-control-sm"
+                   style="max-width:280px;" placeholder="Cari nomor atau pelanggan…">
+            <select name="status" class="form-select form-select-sm" style="max-width:160px;">
+                <option value="">Semua Status</option>
+                <option value="draft" {% if status_filter == 'draft' %}selected{% endif %}>Draft</option>
+                <option value="confirmed" {% if status_filter == 'confirmed' %}selected{% endif %}>Confirmed</option>
+                <option value="selesai" {% if status_filter == 'selesai' %}selected{% endif %}>Selesai</option>
+                <option value="batal" {% if status_filter == 'batal' %}selected{% endif %}>Batal</option>
+            </select>
+            <button class="btn btn-sm btn-outline-primary" type="submit">
+                <i class="bi bi-search me-1"></i>Filter
+            </button>
+            {% if search or status_filter %}
+            <a href="{{ url_for('order_list') }}" class="btn btn-sm btn-outline-secondary">Reset</a>
+            {% endif %}
+        </form>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-0">
+        {% if orders %}
+        <div class="table-responsive">
+            <table class="table table-hover mb-0 align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Nomor Order</th>
+                        <th>Tanggal</th>
+                        <th>Pelanggan</th>
+                        <th class="text-end">Total</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for o in orders %}
+                <tr>
+                    <td class="fw-semibold">{{ o.nomor }}</td>
+                    <td>{{ o.tanggal.strftime('%d/%m/%Y') }}</td>
+                    <td>{{ o.pelanggan.nama }}</td>
+                    <td class="text-end fw-semibold">{{ o.total | rupiah }}</td>
+                    <td class="text-center">
+                        <span class="badge rounded-pill
+                            {% if o.status == 'selesai' %}bg-success
+                            {% elif o.status == 'confirmed' %}bg-warning text-dark
+                            {% elif o.status == 'batal' %}bg-danger
+                            {% else %}bg-secondary{% endif %}">
+                            {{ o.status | title }}
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <a href="{{ url_for('order_detail', id=o.id) }}"
+                           class="btn btn-sm btn-outline-secondary" title="Detail">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                        {% if o.status not in ('selesai', 'batal') %}
+                        <a href="{{ url_for('order_edit', id=o.id) }}"
+                           class="btn btn-sm btn-outline-primary ms-1" title="Edit">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-5 text-muted">
+            <i class="bi bi-cart-x fs-1 d-block mb-2"></i>
+            {% if search or status_filter %}
+                Tidak ada order yang sesuai filter.
+            {% else %}
+                Belum ada order. <a href="{{ url_for('order_tambah') }}">Buat order baru</a>.
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

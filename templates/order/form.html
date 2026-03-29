@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% block title %}{{ 'Edit' if action == 'edit' else 'Buat' }} Order{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center mt-4 mb-4 gap-3">
+    <a href="{{ url_for('order_list') }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left"></i>
+    </a>
+    <h4 class="mb-0 fw-semibold">
+        <i class="bi bi-cart3 me-2 text-warning"></i>
+        {{ 'Edit Order' if action == 'edit' else 'Buat Order Baru' }}
+    </h4>
+</div>
+
+<form method="post" id="orderForm">
+<div class="row g-4">
+    <!-- Header -->
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent fw-semibold">Informasi Order</div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Nomor Order <span class="text-danger">*</span></label>
+                        <input type="text" name="nomor" class="form-control"
+                               value="{{ data.nomor if data else '' }}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Tanggal <span class="text-danger">*</span></label>
+                        <input type="date" name="tanggal" class="form-control"
+                               value="{{ tanggal_iso }}" required>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Pelanggan <span class="text-danger">*</span></label>
+                        <select name="pelanggan_id" class="form-select" required>
+                            <option value="">-- Pilih Pelanggan --</option>
+                            {% for p in pelanggan_list %}
+                            <option value="{{ p.id }}"
+                                {% if data and data.pelanggan_id == p.id %}selected{% endif %}>
+                                {{ p.kode }} – {{ p.nama }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Catatan</label>
+                        <textarea name="catatan" class="form-control" rows="2">{{ data.catatan if data else '' }}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent fw-semibold">Ringkasan</div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-2">
+                    <span class="text-muted">Jumlah Item</span>
+                    <span id="summaryItems" class="fw-semibold">0</span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <span class="fw-semibold">Total</span>
+                    <span id="summaryTotal" class="fs-5 fw-bold text-success">Rp 0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Items -->
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+                <span class="fw-semibold">Detail Produk</span>
+                <button type="button" class="btn btn-sm btn-outline-primary" id="btnTambahItem">
+                    <i class="bi bi-plus-lg me-1"></i>Tambah Item
+                </button>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table mb-0 align-middle" id="itemsTable">
+                        <thead class="table-light">
+                            <tr>
+                                <th style="min-width:220px;">Produk</th>
+                                <th style="min-width:100px;">Qty</th>
+                                <th style="min-width:140px;">Harga (Rp)</th>
+                                <th style="min-width:100px;">Diskon (%)</th>
+                                <th style="min-width:140px;" class="text-end">Subtotal</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="itemsBody">
+                            {% if action == 'edit' and order %}
+                                {% for d in order.detail_orders %}
+                                <tr class="item-row">
+                                    <td>
+                                        <select name="produk_id[]" class="form-select form-select-sm produk-select" required>
+                                            <option value="">-- Pilih --</option>
+                                            {% for p in produk_list %}
+                                            <option value="{{ p.id }}"
+                                                    data-harga="{{ p.harga_jual }}"
+                                                    {% if d.produk_id == p.id %}selected{% endif %}>
+                                                {{ p.nama }} ({{ p.satuan }})
+                                            </option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="number" name="qty[]" class="form-control form-control-sm qty-input"
+                                               value="{{ d.qty }}" min="1" required>
+                                    </td>
+                                    <td>
+                                        <input type="number" name="harga[]" class="form-control form-control-sm harga-input"
+                                               value="{{ d.harga }}" min="0" step="0.01" required>
+                                    </td>
+                                    <td>
+                                        <input type="number" name="diskon[]" class="form-control form-control-sm diskon-input"
+                                               value="{{ d.diskon }}" min="0" max="100" step="0.01">
+                                    </td>
+                                    <td class="text-end fw-semibold subtotal-cell">-</td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-outline-danger btn-hapus-item">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                <div id="noItems" class="text-center py-4 text-muted {% if action == 'edit' and order and order.detail_orders %}d-none{% endif %}">
+                    Belum ada produk. Klik <strong>Tambah Item</strong>.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="col-12 d-flex gap-2 pb-4">
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-save me-1"></i>Simpan Order
+        </button>
+        <a href="{{ url_for('order_list') }}" class="btn btn-outline-secondary">Batal</a>
+    </div>
+</div>
+</form>
+
+<!-- Row template (hidden) -->
+<template id="itemRowTemplate">
+    <tr class="item-row">
+        <td>
+            <select name="produk_id[]" class="form-select form-select-sm produk-select" required>
+                <option value="">-- Pilih Produk --</option>
+                {% for p in produk_list %}
+                <option value="{{ p.id }}" data-harga="{{ p.harga_jual }}">
+                    {{ p.nama }} ({{ p.satuan }})
+                </option>
+                {% endfor %}
+            </select>
+        </td>
+        <td>
+            <input type="number" name="qty[]" class="form-control form-control-sm qty-input"
+                   value="1" min="1" required>
+        </td>
+        <td>
+            <input type="number" name="harga[]" class="form-control form-control-sm harga-input"
+                   value="0" min="0" step="0.01" required>
+        </td>
+        <td>
+            <input type="number" name="diskon[]" class="form-control form-control-sm diskon-input"
+                   value="0" min="0" max="100" step="0.01">
+        </td>
+        <td class="text-end fw-semibold subtotal-cell">Rp 0</td>
+        <td>
+            <button type="button" class="btn btn-sm btn-outline-danger btn-hapus-item">
+                <i class="bi bi-trash"></i>
+            </button>
+        </td>
+    </tr>
+</template>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function formatRupiah(n) {
+    return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+}
+
+function updateRow(row) {
+    const qty = parseFloat(row.querySelector('.qty-input').value) || 0;
+    const harga = parseFloat(row.querySelector('.harga-input').value) || 0;
+    const diskon = parseFloat(row.querySelector('.diskon-input').value) || 0;
+    const subtotal = qty * harga * (1 - diskon / 100);
+    row.querySelector('.subtotal-cell').textContent = formatRupiah(subtotal);
+    updateSummary();
+}
+
+function updateSummary() {
+    const rows = document.querySelectorAll('.item-row');
+    let total = 0;
+    rows.forEach(row => {
+        const qty = parseFloat(row.querySelector('.qty-input').value) || 0;
+        const harga = parseFloat(row.querySelector('.harga-input').value) || 0;
+        const diskon = parseFloat(row.querySelector('.diskon-input').value) || 0;
+        total += qty * harga * (1 - diskon / 100);
+    });
+    document.getElementById('summaryTotal').textContent = formatRupiah(total);
+    document.getElementById('summaryItems').textContent = rows.length;
+    document.getElementById('noItems').classList.toggle('d-none', rows.length > 0);
+}
+
+function addEventListeners(row) {
+    row.querySelector('.produk-select').addEventListener('change', function() {
+        const opt = this.options[this.selectedIndex];
+        const harga = parseFloat(opt.dataset.harga) || 0;
+        row.querySelector('.harga-input').value = harga;
+        updateRow(row);
+    });
+    row.querySelector('.qty-input').addEventListener('input', () => updateRow(row));
+    row.querySelector('.harga-input').addEventListener('input', () => updateRow(row));
+    row.querySelector('.diskon-input').addEventListener('input', () => updateRow(row));
+    row.querySelector('.btn-hapus-item').addEventListener('click', function() {
+        row.remove();
+        updateSummary();
+    });
+}
+
+document.getElementById('btnTambahItem').addEventListener('click', function() {
+    const tmpl = document.getElementById('itemRowTemplate');
+    const clone = tmpl.content.cloneNode(true);
+    const row = clone.querySelector('tr');
+    document.getElementById('itemsBody').appendChild(clone);
+    addEventListeners(document.getElementById('itemsBody').lastElementChild);
+    updateSummary();
+});
+
+// Init existing rows
+document.querySelectorAll('.item-row').forEach(row => {
+    addEventListeners(row);
+    updateRow(row);
+});
+
+document.getElementById('orderForm').addEventListener('submit', function(e) {
+    const rows = document.querySelectorAll('.item-row');
+    if (rows.length === 0) {
+        e.preventDefault();
+        alert('Minimal satu produk harus ditambahkan!');
+    }
+});
+</script>
+{% endblock %}

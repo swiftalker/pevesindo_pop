@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}{{ 'Edit' if action == 'edit' else 'Tambah' }} Pelanggan{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center mt-4 mb-4 gap-3">
+    <a href="{{ url_for('pelanggan_list') }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left"></i>
+    </a>
+    <h4 class="mb-0 fw-semibold">
+        <i class="bi bi-people me-2 text-info"></i>
+        {{ 'Edit Pelanggan' if action == 'edit' else 'Tambah Pelanggan' }}
+    </h4>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Kode Pelanggan <span class="text-danger">*</span></label>
+                        <input type="text" name="kode" class="form-control"
+                               value="{{ data.kode if data else '' }}" required maxlength="50">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Nama Pelanggan <span class="text-danger">*</span></label>
+                        <input type="text" name="nama" class="form-control"
+                               value="{{ data.nama if data else '' }}" required maxlength="200">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Alamat</label>
+                        <textarea name="alamat" class="form-control" rows="3">{{ data.alamat if data else '' }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Telepon</label>
+                        <input type="text" name="telepon" class="form-control"
+                               value="{{ data.telepon if data else '' }}" maxlength="50">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Email</label>
+                        <input type="email" name="email" class="form-control"
+                               value="{{ data.email if data else '' }}" maxlength="200">
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save me-1"></i>Simpan
+                        </button>
+                        <a href="{{ url_for('pelanggan_list') }}" class="btn btn-outline-secondary">Batal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
