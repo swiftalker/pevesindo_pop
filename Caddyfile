@@ -5,7 +5,7 @@
 	auto_https disable_redirects
 }
 
-luna-rin.test {
+pevesindo-pop.test {
 	root * public
 	php_server {
 		resolve_root_symlink
