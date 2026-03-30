@@ -2,7 +2,8 @@
 
 namespace App\Models\Sales;
 
-use App\Models\Odoo\OdooProduct;
+use App\Models\OdooProduct;
+use App\Models\SaleOrder;
 use Carbon\Carbon;
 use Database\Factories\SaleOrderLineFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

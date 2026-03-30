@@ -2,6 +2,7 @@
 
 namespace App\Models\HR;
 
+use App\Models\Employee;
 use Carbon\Carbon;
 use Database\Factories\AttendanceFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

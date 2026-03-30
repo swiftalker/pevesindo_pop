@@ -2,7 +2,8 @@
 
 namespace App\Models\Project;
 
-use App\Models\HR\Employee;
+use App\Models\Employee;
+use App\Models\Project;
 use Carbon\Carbon;
 use Database\Factories\SurveyReportFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

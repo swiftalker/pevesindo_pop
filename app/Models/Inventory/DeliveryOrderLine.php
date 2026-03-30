@@ -2,7 +2,8 @@
 
 namespace App\Models\Inventory;
 
-use App\Models\Odoo\OdooProduct;
+use App\Models\DeliveryOrder;
+use App\Models\OdooProduct;
 use Carbon\Carbon;
 use Database\Factories\DeliveryOrderLineFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

@@ -2,8 +2,7 @@
 
 namespace App\Models\Notification;
 
-use App\Models\Odoo\OdooCompany;
-use App\Models\User;
+use App\Models\OdooCompany;
 use Carbon\Carbon;
 use Database\Factories\AppNotificationFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

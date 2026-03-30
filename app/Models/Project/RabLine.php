@@ -2,7 +2,8 @@
 
 namespace App\Models\Project;
 
-use App\Models\Odoo\OdooProduct;
+use App\Models\OdooProduct;
+use App\Models\Rab;
 use Carbon\Carbon;
 use Database\Factories\RabLineFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

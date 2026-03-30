@@ -2,6 +2,7 @@
 
 namespace App\Models\Sales;
 
+use App\Models\SaleOrder;
 use Carbon\Carbon;
 use Database\Factories\InvoiceFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

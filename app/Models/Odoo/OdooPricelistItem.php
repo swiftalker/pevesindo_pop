@@ -2,6 +2,8 @@
 
 namespace App\Models\Odoo;
 
+use App\Models\OdooPricelist;
+use App\Models\OdooProduct;
 use Carbon\Carbon;
 use Database\Factories\OdooPricelistItemFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

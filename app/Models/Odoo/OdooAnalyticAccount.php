@@ -2,6 +2,8 @@
 
 namespace App\Models\Odoo;
 
+use App\Models\OdooAnalyticPlan;
+use App\Models\OdooCompany;
 use Carbon\Carbon;
 use Database\Factories\OdooAnalyticAccountFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

@@ -2,7 +2,8 @@
 
 namespace App\Models\Project;
 
-use App\Models\Sales\SalesIntent;
+use App\Models\Project;
+use App\Models\SalesIntent;
 use Carbon\Carbon;
 use Database\Factories\RabFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $center_app_ref
  * @property int $project_id
  * @property int $sales_intent_id
+ * @property int $rab_template_id
  * @property float $total
  * @property int $project_duration_days
  * @property int $technician_needed
@@ -36,6 +38,7 @@ class Rab extends Model
         'center_app_ref',
         'project_id',
         'sales_intent_id',
+        'rab_template_id',
         'total',
         'project_duration_days',
         'technician_needed',
@@ -55,6 +58,7 @@ class Rab extends Model
             'id' => 'integer',
             'project_id' => 'integer',
             'sales_intent_id' => 'integer',
+            'rab_template_id' => 'integer',
             'total' => 'decimal:2',
             'submitted_at' => 'timestamp',
             'approved_at' => 'timestamp',
@@ -69,6 +73,11 @@ class Rab extends Model
     public function salesIntent(): BelongsTo
     {
         return $this->belongsTo(SalesIntent::class);
+    }
+
+    public function rabTemplate(): BelongsTo
+    {
+        return $this->belongsTo(RabTemplate::class);
     }
 
     /**

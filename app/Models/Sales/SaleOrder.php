@@ -2,9 +2,10 @@
 
 namespace App\Models\Sales;
 
-use App\Models\Odoo\OdooCompany;
-use App\Models\Odoo\OdooPartner;
-use App\Models\Odoo\OdooPricelist;
+use App\Models\OdooCompany;
+use App\Models\OdooPartner;
+use App\Models\OdooPricelist;
+use App\Models\SalesIntent;
 use Carbon\Carbon;
 use Database\Factories\SaleOrderFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

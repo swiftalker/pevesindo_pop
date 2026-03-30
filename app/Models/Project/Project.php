@@ -2,9 +2,9 @@
 
 namespace App\Models\Project;
 
-use App\Models\Odoo\OdooCompany;
-use App\Models\Odoo\OdooPartner;
-use App\Models\Sales\SaleOrder;
+use App\Models\OdooCompany;
+use App\Models\OdooPartner;
+use App\Models\SaleOrder;
 use Carbon\Carbon;
 use Database\Factories\ProjectFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

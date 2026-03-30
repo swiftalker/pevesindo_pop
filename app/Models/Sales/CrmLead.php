@@ -2,6 +2,7 @@
 
 namespace App\Models\Sales;
 
+use App\Models\SalesIntent;
 use Carbon\Carbon;
 use Database\Factories\CrmLeadFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

@@ -2,8 +2,7 @@
 
 namespace App\Models\HR;
 
-use App\Models\Odoo\OdooCompany;
-use App\Models\User;
+use App\Models\OdooCompany;
 use Carbon\Carbon;
 use Database\Factories\EmployeeFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

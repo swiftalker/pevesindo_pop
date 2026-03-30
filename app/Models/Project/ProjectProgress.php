@@ -2,7 +2,8 @@
 
 namespace App\Models\Project;
 
-use App\Models\HR\Employee;
+use App\Models\Employee;
+use App\Models\ProjectTask;
 use Carbon\Carbon;
 use Database\Factories\ProjectProgressFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

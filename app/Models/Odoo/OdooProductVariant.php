@@ -2,6 +2,7 @@
 
 namespace App\Models\Odoo;
 
+use App\Models\OdooProduct;
 use Carbon\Carbon;
 use Database\Factories\OdooProductVariantFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

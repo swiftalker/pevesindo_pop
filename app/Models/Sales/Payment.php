@@ -2,7 +2,8 @@
 
 namespace App\Models\Sales;
 
-use App\Models\Odoo\OdooJournal;
+use App\Models\Invoice;
+use App\Models\OdooJournal;
 use Carbon\Carbon;
 use Database\Factories\PaymentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
