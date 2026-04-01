@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Team;
-use App\Models\User;
+use App\Models\Auth\Team;
+use App\Models\Auth\User;
 
 class TeamPolicy
 {

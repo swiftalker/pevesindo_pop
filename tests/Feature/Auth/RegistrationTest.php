@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Models\Auth\User;
 
 test('registration screen can be rendered', function () {
     $response = $this->get(route('register'));

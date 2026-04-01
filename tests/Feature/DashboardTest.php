@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Models\Auth\User;
 
 test('guests are redirected to the login page', function () {
     $user = User::factory()->create();

@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use App\Enums\TeamRole;
-use App\Models\Team;
-use App\Models\User;
+use App\Models\Auth\Team;
+use App\Models\Auth\User;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;

@@ -1,8 +1,8 @@
 <?php
 
 use App\Enums\TeamRole;
-use App\Models\Team;
-use App\Models\User;
+use App\Models\Auth\Team;
+use App\Models\Auth\User;
 use Livewire\Livewire;
 
 test('team member role can be updated by owner', function () {

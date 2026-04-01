@@ -1,8 +1,8 @@
 <?php
 
 use App\Enums\TeamRole;
-use App\Models\Team;
-use App\Models\User;
+use App\Models\Auth\Team;
+use App\Models\Auth\User;
 use Livewire\Livewire;
 
 test('teams index page can be rendered', function () {

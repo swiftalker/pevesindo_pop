@@ -1,5 +1,8 @@
 <laravel-boost-guidelines>
 === foundation rules ===
+BIG NOTE:
+1. Keep the context limit below 50%. Clear out unused content in the current progress.
+2. Don't forget to clean up old contexts that are no longer used, bro, so that the context limit in the workspace remains spacious.
 
 # Laravel Boost Guidelines
 

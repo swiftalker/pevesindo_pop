@@ -2,7 +2,7 @@
 
 namespace App\Concerns;
 
-use App\Models\Team;
+use App\Models\Auth\Team;
 use Illuminate\Support\Str;
 
 trait GeneratesUniqueTeamSlugs
