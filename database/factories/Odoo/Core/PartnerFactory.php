@@ -14,7 +14,7 @@ class PartnerFactory extends Factory
     {
         return [
             'odoo_id' => fake()->numberBetween(-10000, 10000),
-            'company_id' => Odoo\Core\Company::factory(),
+            'company_id' => \App\Models\Odoo\Core\Company::factory(),
             'name' => fake()->name(),
             'email' => fake()->safeEmail(),
             'phone' => fake()->phoneNumber(),

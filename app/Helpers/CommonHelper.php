@@ -42,6 +42,13 @@ class CommonHelper
         }
 
         $notification->sendToDatabase($recipient, isEventDispatched: true);
+        
+        // Broadcast via Echo so the user sees a realtime toast and hears the sound
+        // if they are not the one who triggered the action directly
+        $notification->broadcast($recipient);
+        
+        // Also send locally via Livewire/JS so the current active user sees the toast immediately
+        $notification->send();
     }
 
     /**

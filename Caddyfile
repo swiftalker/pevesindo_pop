@@ -7,11 +7,17 @@
 
 pevesindo-pop.test {
 	root * public
+	
+	@reverb {
+		path /app/* /apps/*
+	}
+	reverse_proxy @reverb 127.0.0.1:8080
+	
 	php_server {
 		resolve_root_symlink
 	}
 	encode zstd gzip
-	php_server
+	# php_server is already declared above with options
 	file_server
 	tls internal
 }

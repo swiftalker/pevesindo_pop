@@ -3,8 +3,8 @@
 <div
     x-data="notificationSoundPlayer()"
     x-init="init()"
-    x-on:notification-sent.window="handleNotification($event.detail)"
-    x-on:filament-notification-sent.window="handleNotification($event.detail)"
+    x-on:notificationSent.camel.window="handleNotification($event.detail)"
+    x-on:echo:notification.window="handleNotification($event.detail)"
     class="hidden"
 >
 </div>
@@ -27,6 +27,7 @@ document.addEventListener('alpine:init', () => {
         },
 
         init() {
+            console.log("HELLO WORLD")
             this.preloadSounds();
             this.listenEchoNotifications();
         },
@@ -57,6 +58,7 @@ document.addEventListener('alpine:init', () => {
 
             window.Echo.private(`App.Models.Auth.User.${userId}`)
                 .notification((notification) => {
+                    console.log(notification);
                     const sound = notification?.viewData?.sound
                         || notification?.data?.viewData?.sound
                         || notification?.data?.sound

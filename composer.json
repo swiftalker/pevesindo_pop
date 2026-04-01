@@ -55,7 +55,7 @@
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
-            "bunx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"frankenphp run --config Caddyfile\" \"php artisan queue:listen --tries=1 --timeout=0\" \"php artisan pail --timeout=0\" \"php artisan reverb:start --host='0.0.0.0' --port=8080 --hostname='https://pevesindo-pop.test'\" \"bun run dev\" --names=frankenphp,queue,logs,vite --kill-others"
+            "bunx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"frankenphp run --config Caddyfile\" \"php artisan queue:listen --tries=1 --timeout=0\" \"php artisan pail --timeout=0\" \"php artisan reverb:start\" \"bun run dev\" --names=frankenphp,queue,logs,vite --kill-others"
         ],
         "lint": [
             "pint --parallel"
