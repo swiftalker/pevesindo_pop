@@ -15,9 +15,9 @@ return new class extends Migration
 
         Schema::create('delivery_order_lines', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('delivery_order_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('delivery_order_id');
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('product_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('product_id')->nullable();
             $table->string('name');
             $table->decimal('product_uom_qty', 15, 2)->default(0);
             $table->decimal('qty_done', 15, 2)->default(0);

@@ -1,6 +1,6 @@
 # **1. Latar Belakang & Tujuan**
 
-Center-App dibangun sebagai middleware antara pengguna lapangan/operasional harian dan Odoo sebagai ERP inti. Keputusan ini muncul dari tiga masalah nyata yang dihadapi ketika menggunakan Odoo secara langsung:
+Pop-App dibangun sebagai middleware antara pengguna lapangan/operasional harian dan Odoo sebagai ERP inti. Keputusan ini muncul dari tiga masalah nyata yang dihadapi ketika menggunakan Odoo secara langsung:
 
 ### **Masalah Biaya yang Tidak Proporsional**
 
@@ -14,7 +14,7 @@ Karena keterbatasan anggaran, perusahaan hanya berlangganan Odoo Online yang tid
 
 Semua pengguna berbagi satu akun super-admin. Antarmuka Odoo terlalu kompleks untuk pengguna lapangan, dan tracking perilaku pengguna - siapa yang login, jam berapa, melakukan apa - menjadi tidak mungkin.
 
-**✅ Solusi:** Center-App memegang kredensial Odoo sebagai super-user. Di sisi Odoo, semua aktivitas tampak dari satu pengguna. Di sisi Center-App, puluhan individu dari berbagai cabang bekerja secara terisolasi dan terlacak sepenuhnya.
+**✅ Solusi:** Pop-App memegang kredensial Odoo sebagai super-user. Di sisi Odoo, semua aktivitas tampak dari satu pengguna. Di sisi Pop-App, puluhan individu dari berbagai cabang bekerja secara terisolasi dan terlacak sepenuhnya.
 
 ## **Prioritas Pengembangan**
 

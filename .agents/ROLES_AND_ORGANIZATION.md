@@ -1,6 +1,6 @@
 # **2. Struktur Organisasi & Role**
 
-Center-App menggunakan terminologi militer untuk memperjelas hirarki dan tanggung jawab.
+Pop-App menggunakan terminologi militer untuk memperjelas hirarki dan tanggung jawab.
 
 ## **Hirarki Organisasi**
 
@@ -32,7 +32,7 @@ Center-App menggunakan terminologi militer untuk memperjelas hirarki dan tanggun
 
 # **3. Role Operasional Harian - Tugas & Kemampuan**
 
-Bagian ini mendefinisikan siapa yang bertugas, apa tanggung jawabnya, dan apa yang dapat dilakukan di Center-App.
+Bagian ini mendefinisikan siapa yang bertugas, apa tanggung jawabnya, dan apa yang dapat dilakukan di Pop-App.
 
 ## **3.1 CSSR - Customer Sales Service Representative**
 
@@ -68,7 +68,7 @@ Bagian ini mendefinisikan siapa yang bertugas, apa tanggung jawabnya, dan apa ya
 
 ## **3.5 Driver & Helper**
 
-| **Role**   | **KPI**            | **Aksi di Center-App**                                                      |
+| **Role**   | **KPI**            | **Aksi di Pop-App**                                                      |
 | ---------- | ------------------ | --------------------------------------------------------------------------- |
 | **Driver** | Kendaraan & barang | Assign pengiriman, laporan barang sampai, berita acara & odometer kendaraan |
 | **Helper** | Kerapian gudang    | Terima & jalankan semua tugas yang di-assign, laporan tugas dan kegiatan    |

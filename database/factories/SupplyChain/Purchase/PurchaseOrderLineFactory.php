@@ -2,9 +2,6 @@
 
 namespace Database\Factories\SupplyChain\Purchase;
 
-use App\Models\Odoo\Finance\Accounting\Odoo\Finance\Accounting\AnalyticAccount;
-use App\Models\Odoo\SupplyChain\Inventory\Odoo\SupplyChain\Inventory\Product;
-use App\Models\SupplyChain\Purchase\SupplyChain\Purchase\PurchaseOrder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PurchaseOrderLineFactory extends Factory
@@ -15,7 +12,7 @@ class PurchaseOrderLineFactory extends Factory
     public function definition(): array
     {
         return [
-            'center_app_ref' => fake()->uuid(),
+            'pop_app_ref' => fake()->uuid(),
             'order_id' => SupplyChain\Purchase\PurchaseOrder::factory(),
             'odoo_id' => fake()->numberBetween(-10000, 10000),
             'product_id' => Odoo\SupplyChain\Inventory\Product::factory(),

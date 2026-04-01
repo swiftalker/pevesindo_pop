@@ -15,9 +15,9 @@ return new class extends Migration
 
         Schema::create('intent_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('intent_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('intent_id');
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('product_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('product_id')->nullable();
             $table->string('name');
             $table->decimal('quantity', 15, 2)->default(1);
             $table->decimal('price_unit', 15, 2)->default(0);

@@ -15,13 +15,13 @@ return new class extends Migration
 
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->uuid('center_app_ref')->unique();
-            $table->foreignId('order_id')->nullable()->constrained('sale_orders')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->uuid('pop_app_ref')->unique();
+            $table->foreignId('order_id')->nullable();
             $table->integer('odoo_id')->nullable()->index();
             $table->string('name');
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('partner_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('analytic_account_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('company_id');
+            $table->foreignId('partner_id');
+            $table->foreignId('analytic_account_id')->nullable();
             $table->date('date_start')->nullable();
             $table->date('date_end')->nullable();
             $table->string('project_state', 20)->default('draft');

@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('partner_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('partner_id');
+            $table->foreignId('company_id');
             $table->string('name');
             $table->decimal('amount_total', 15, 2)->default(0);
             $table->string('state', 20)->default('draft');

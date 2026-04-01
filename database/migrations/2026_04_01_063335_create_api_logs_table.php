@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('response_status')->nullable();
             $table->text('response_body')->nullable();
             $table->integer('duration_ms')->nullable();
-            $table->foreignId('company_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('company_id')->nullable();
             $table->timestamps();
         });
 

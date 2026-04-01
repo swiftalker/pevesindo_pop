@@ -2,13 +2,19 @@
 
 namespace App\Models\Finance\Expenses;
 
+use App\Models\Odoo\Core\Company;
+use App\Models\Odoo\Finance\Accounting\AnalyticAccount;
+use App\Models\Odoo\HR\Employee\Employee;
+use App\Models\Odoo\SupplyChain\Inventory\Product;
+use App\Models\Services\Project\Project;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
- * @property string $center_app_ref
+ * @property string $pop_app_ref
  * @property int $employee_id
  * @property int $odoo_id
  * @property int $company_id
@@ -18,11 +24,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $name
  * @property string $payment_mode
  * @property float $total_amount
- * @property \Carbon\Carbon $date
+ * @property Carbon $date
  * @property string $expense_state
  * @property string $sync_state
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Expense extends Model
 {
@@ -34,7 +40,7 @@ class Expense extends Model
      * @var array
      */
     protected $fillable = [
-        'center_app_ref',
+        'pop_app_ref',
         'employee_id',
         'odoo_id',
         'company_id',
@@ -70,26 +76,26 @@ class Expense extends Model
 
     public function employee(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\HR\Employee\Employee::class);
+        return $this->belongsTo(Employee::class);
     }
 
     public function company(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Company::class);
+        return $this->belongsTo(Company::class);
     }
 
     public function product(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\SupplyChain\Inventory\Product::class);
+        return $this->belongsTo(Product::class);
     }
 
     public function project(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Services\Project\Project::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function analyticAccount(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Finance\Accounting\AnalyticAccount::class);
+        return $this->belongsTo(AnalyticAccount::class);
     }
 }

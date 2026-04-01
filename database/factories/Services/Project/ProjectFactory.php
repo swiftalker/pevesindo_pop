@@ -2,10 +2,6 @@
 
 namespace Database\Factories\Services\Project;
 
-use App\Models\Odoo\Core\Odoo\Core\Company;
-use App\Models\Odoo\Core\Odoo\Core\Partner;
-use App\Models\Odoo\Finance\Accounting\Odoo\Finance\Accounting\AnalyticAccount;
-use App\Models\Sales\Order\Sales\Order\SaleOrder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProjectFactory extends Factory
@@ -16,7 +12,7 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         return [
-            'center_app_ref' => fake()->uuid(),
+            'pop_app_ref' => fake()->uuid(),
             'order_id' => Sales\Order\SaleOrder::factory(),
             'odoo_id' => fake()->numberBetween(-10000, 10000),
             'name' => fake()->name(),

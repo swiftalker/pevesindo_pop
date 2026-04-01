@@ -15,11 +15,11 @@ return new class extends Migration
 
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->nullable();
             $table->integer('odoo_id')->nullable()->index();
             $table->string('name');
             $table->string('job_title')->nullable();
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('company_id');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

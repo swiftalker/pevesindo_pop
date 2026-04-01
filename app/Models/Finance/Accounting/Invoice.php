@@ -2,6 +2,10 @@
 
 namespace App\Models\Finance\Accounting;
 
+use App\Models\Odoo\Finance\Accounting\AnalyticAccount;
+use App\Models\Sales\Order\SaleOrder;
+use App\Models\Services\Project\Project;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
- * @property string $center_app_ref
+ * @property string $pop_app_ref
  * @property int $order_id
  * @property int $project_id
  * @property int $odoo_id
@@ -21,9 +25,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $invoice_state
  * @property string $note
  * @property string $sync_state
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property \Carbon\Carbon $deleted_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  */
 class Invoice extends Model
 {
@@ -35,7 +39,7 @@ class Invoice extends Model
      * @var array
      */
     protected $fillable = [
-        'center_app_ref',
+        'pop_app_ref',
         'order_id',
         'project_id',
         'odoo_id',
@@ -68,12 +72,12 @@ class Invoice extends Model
 
     public function order(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Sales\Order\SaleOrder::class);
+        return $this->belongsTo(SaleOrder::class);
     }
 
     public function project(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Services\Project\Project::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function team(): BelongsTo
@@ -83,6 +87,6 @@ class Invoice extends Model
 
     public function analyticAccount(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Finance\Accounting\AnalyticAccount::class);
+        return $this->belongsTo(AnalyticAccount::class);
     }
 }

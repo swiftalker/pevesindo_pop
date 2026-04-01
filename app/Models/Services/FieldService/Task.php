@@ -2,13 +2,18 @@
 
 namespace App\Models\Services\FieldService;
 
+use App\Models\Odoo\Core\Company;
+use App\Models\Odoo\Core\Partner;
+use App\Models\Odoo\HR\Employee\Employee;
+use App\Models\Services\Project\Project;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
- * @property string $center_app_ref
+ * @property string $pop_app_ref
  * @property int $odoo_id
  * @property int $company_id
  * @property int $partner_id
@@ -16,14 +21,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $name
  * @property int $assigned_to
  * @property string $worksheet_result
- * @property \Carbon\Carbon $reschedule_requested_at
+ * @property Carbon $reschedule_requested_at
  * @property string $reschedule_reason
- * @property \Carbon\Carbon $reassignment_requested_at
+ * @property Carbon $reassignment_requested_at
  * @property string $reassignment_reason
  * @property string $fsm_state
  * @property string $sync_state
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Task extends Model
 {
@@ -35,7 +40,7 @@ class Task extends Model
      * @var array
      */
     protected $fillable = [
-        'center_app_ref',
+        'pop_app_ref',
         'odoo_id',
         'company_id',
         'partner_id',
@@ -71,21 +76,21 @@ class Task extends Model
 
     public function company(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Company::class);
+        return $this->belongsTo(Company::class);
     }
 
     public function partner(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Partner::class);
+        return $this->belongsTo(Partner::class);
     }
 
     public function project(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Services\Project\Project::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function assignedTo(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\HR\Employee\Employee::class);
+        return $this->belongsTo(Employee::class);
     }
 }

@@ -1,6 +1,6 @@
 ---
 name: Odoo Integration Pattern
-description: Rules for communicating with Odoo using Center-App standards (No third-party packages, Jobs only).
+description: Rules for communicating with Odoo using Pop-App standards (No third-party packages, Jobs only).
 ---
 
 # Odoo Integration Skill
@@ -17,8 +17,8 @@ All PUSH operations must dispatch the `App\Jobs\OdooSyncJob` worker.
 The UI optimistic state updates to `:syncing`.
 
 ## 3. Idempotency is Required
-Every Odoo Job MUST carry a `center_app_ref` (unique ID reference) from Center-App.
-Before `create` in Odoo, write a checker to see if `center_app_ref` already exists to prevent duplicate data mapping during failed retries.
+Every Odoo Job MUST carry a `pop_app_ref` (unique ID reference) from Pop-App.
+Before `create` in Odoo, write a checker to see if `pop_app_ref` already exists to prevent duplicate data mapping during failed retries.
 
 ## 4. Cache Reference Data
 PULL requests (taking Journals, Customers, Pricelists) must be cached using `Cache::remember()` with defined TTLs (usually minimum 5 minutes, default 1 hour).

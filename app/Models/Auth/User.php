@@ -4,9 +4,9 @@ namespace App\Models\Auth;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Concerns\HasTeams;
+use Database\Factories\Auth\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
-use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -46,7 +46,7 @@ class User extends Authenticatable implements FilamentUser
             ->map(fn ($word) => Str::substr($word, 0, 1))
             ->implode('');
     }
-    
+
     public function canAccessPanel(Panel $panel): bool
     {
         return true;

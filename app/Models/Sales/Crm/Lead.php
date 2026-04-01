@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
- * @property string $center_app_ref
+ * @property string $pop_app_ref
  * @property int $intent_id
  * @property int $odoo_id
  * @property int $team_id
@@ -34,7 +34,7 @@ class Lead extends Model
      * @var array
      */
     protected $fillable = [
-        'center_app_ref',
+        'pop_app_ref',
         'intent_id',
         'odoo_id',
         'team_id',

@@ -2,8 +2,6 @@
 
 namespace Database\Factories\Sales\Intent;
 
-use App\Models\Odoo\Core\Odoo\Core\Company;
-use App\Models\Odoo\Sales\Pricelist\Odoo\Sales\Pricelist\Pricelist;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -15,7 +13,7 @@ class IntentFactory extends Factory
     public function definition(): array
     {
         return [
-            'center_app_ref' => fake()->uuid(),
+            'pop_app_ref' => fake()->uuid(),
             'user_id' => User::factory(),
             'company_id' => Odoo\Core\Company::factory(),
             'sales_type' => fake()->regexify('[A-Za-z0-9]{20}'),

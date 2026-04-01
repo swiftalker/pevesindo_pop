@@ -2,10 +2,6 @@
 
 namespace Database\Factories\Sales\Order;
 
-use App\Models\Odoo\Finance\Accounting\Odoo\Finance\Accounting\AnalyticAccount;
-use App\Models\Odoo\Sales\Order\Odoo\Sales\Order\SaleOrder;
-use App\Models\Odoo\SupplyChain\Inventory\Odoo\SupplyChain\Inventory\Product;
-use App\Models\Sales\Order\Sales\Order\SaleOrder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SaleOrderLineFactory extends Factory
@@ -16,7 +12,7 @@ class SaleOrderLineFactory extends Factory
     public function definition(): array
     {
         return [
-            'center_app_ref' => fake()->uuid(),
+            'pop_app_ref' => fake()->uuid(),
             'order_id' => Sales\Order\SaleOrder::factory(),
             'odoo_id' => fake()->numberBetween(-10000, 10000),
             'sequence' => fake()->numberBetween(-10000, 10000),

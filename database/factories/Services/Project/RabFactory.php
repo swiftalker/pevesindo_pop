@@ -2,9 +2,6 @@
 
 namespace Database\Factories\Services\Project;
 
-use App\Models\Sales\Intent\Sales\Intent\Intent;
-use App\Models\Services\Project\Odoo\Sales\Crm\Team;
-use App\Models\Services\Project\Services\Project\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RabFactory extends Factory
@@ -15,7 +12,7 @@ class RabFactory extends Factory
     public function definition(): array
     {
         return [
-            'center_app_ref' => fake()->uuid(),
+            'pop_app_ref' => fake()->uuid(),
             'project_id' => Services\Project\Project::factory(),
             'intent_id' => Sales\Intent\Intent::factory(),
             'odoo_invoice_id' => fake()->numberBetween(-10000, 10000),

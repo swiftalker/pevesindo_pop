@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('code', 10)->nullable();
             $table->boolean('is_active')->default(true);
-            $table->unique('odoo_id');
             $table->timestamps();
         });
     }

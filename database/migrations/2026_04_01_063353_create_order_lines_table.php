@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('order_lines', function (Blueprint $table) {
             $table->id();
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('order_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('product_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('analytic_account_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('order_id');
+            $table->foreignId('product_id')->nullable();
+            $table->foreignId('analytic_account_id')->nullable();
             $table->text('name');
             $table->decimal('product_uom_qty', 15, 2)->default(1);
             $table->decimal('price_unit', 15, 2)->default(0);

@@ -2,13 +2,15 @@
 
 namespace App\Models\Services\Project;
 
+use App\Models\Sales\Intent\Intent;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
- * @property string $center_app_ref
+ * @property string $pop_app_ref
  * @property int $project_id
  * @property int $intent_id
  * @property int $odoo_invoice_id
@@ -18,8 +20,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $note
  * @property string $sync_state
  * @property string $x_studio_many2many_field_4jv_1jeesssc3
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Rab extends Model
 {
@@ -31,7 +33,7 @@ class Rab extends Model
      * @var array
      */
     protected $fillable = [
-        'center_app_ref',
+        'pop_app_ref',
         'project_id',
         'intent_id',
         'odoo_invoice_id',
@@ -62,12 +64,12 @@ class Rab extends Model
 
     public function project(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Services\Project\Project::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function intent(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Sales\Intent\Intent::class);
+        return $this->belongsTo(Intent::class);
     }
 
     public function team(): BelongsTo

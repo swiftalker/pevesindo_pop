@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('analytic_plans', function (Blueprint $table) {
             $table->id();
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('company_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('company_id')->nullable();
             $table->string('name');
             $table->timestamps();
         });

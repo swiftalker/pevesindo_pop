@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('pricelist_items', function (Blueprint $table) {
             $table->id();
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('pricelist_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('pricelist_id');
             $table->decimal('min_quantity', 15, 2)->default(0);
             $table->decimal('fixed_price', 15, 2)->default(0);
             $table->decimal('percent_price', 5, 2)->default(0);

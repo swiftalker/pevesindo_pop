@@ -2,11 +2,6 @@
 
 namespace Database\Factories\Services\FieldService;
 
-use App\Models\Odoo\Core\Odoo\Core\Company;
-use App\Models\Odoo\Core\Odoo\Core\Partner;
-use App\Models\Odoo\HR\Employee\Odoo\HR\Employee\Employee;
-use App\Models\Odoo\Services\Project\Odoo\Services\Project\Project;
-use App\Models\Services\Project\Services\Project\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TaskFactory extends Factory
@@ -17,7 +12,7 @@ class TaskFactory extends Factory
     public function definition(): array
     {
         return [
-            'center_app_ref' => fake()->uuid(),
+            'pop_app_ref' => fake()->uuid(),
             'odoo_id' => fake()->numberBetween(-10000, 10000),
             'company_id' => Odoo\Core\Company::factory(),
             'partner_id' => Odoo\Core\Partner::factory(),

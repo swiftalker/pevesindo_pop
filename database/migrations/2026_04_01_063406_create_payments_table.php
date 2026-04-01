@@ -15,10 +15,10 @@ return new class extends Migration
 
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->uuid('center_app_ref')->unique();
-            $table->foreignId('invoice_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->uuid('pop_app_ref')->unique();
+            $table->foreignId('invoice_id');
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('journal_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('journal_id');
             $table->decimal('amount', 15, 2)->default(0);
             $table->date('payment_date');
             $table->string('payment_state', 20)->default('draft');

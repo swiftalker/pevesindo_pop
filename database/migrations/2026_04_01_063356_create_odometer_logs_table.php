@@ -15,10 +15,10 @@ return new class extends Migration
 
         Schema::create('odometer_logs', function (Blueprint $table) {
             $table->id();
-            $table->uuid('center_app_ref')->unique();
+            $table->uuid('pop_app_ref')->unique();
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('vehicle_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('driver_id')->constrained('employees')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('vehicle_id');
+            $table->foreignId('driver_id');
             $table->date('date');
             $table->decimal('value', 15, 2);
             $table->string('sync_state', 20)->default('local_draft');

@@ -15,16 +15,16 @@ return new class extends Migration
 
         Schema::create('intents', function (Blueprint $table) {
             $table->id();
-            $table->uuid('center_app_ref')->unique();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->uuid('pop_app_ref')->unique();
+            $table->foreignId('user_id');
+            $table->foreignId('company_id');
             $table->string('sales_type', 20)->default('closed');
             $table->string('intent_state', 30)->default('prospect');
             $table->string('pipeline_stage', 50)->nullable();
             $table->string('customer_name');
             $table->string('customer_phone', 30)->nullable();
             $table->text('project_address')->nullable();
-            $table->foreignId('pricelist_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('pricelist_id')->nullable();
             $table->decimal('expected_revenue', 15, 2)->default(0);
             $table->text('note')->nullable();
             $table->integer('odoo_lead_id')->nullable()->index();

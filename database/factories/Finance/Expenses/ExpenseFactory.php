@@ -2,11 +2,6 @@
 
 namespace Database\Factories\Finance\Expenses;
 
-use App\Models\Odoo\Core\Odoo\Core\Company;
-use App\Models\Odoo\Finance\Accounting\Odoo\Finance\Accounting\AnalyticAccount;
-use App\Models\Odoo\HR\Employee\Odoo\HR\Employee\Employee;
-use App\Models\Odoo\SupplyChain\Inventory\Odoo\SupplyChain\Inventory\Product;
-use App\Models\Services\Project\Services\Project\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ExpenseFactory extends Factory
@@ -17,7 +12,7 @@ class ExpenseFactory extends Factory
     public function definition(): array
     {
         return [
-            'center_app_ref' => fake()->uuid(),
+            'pop_app_ref' => fake()->uuid(),
             'employee_id' => Odoo\HR\Employee\Employee::factory(),
             'odoo_id' => fake()->numberBetween(-10000, 10000),
             'company_id' => Odoo\Core\Company::factory(),

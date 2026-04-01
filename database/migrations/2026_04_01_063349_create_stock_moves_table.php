@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('stock_moves', function (Blueprint $table) {
             $table->id();
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('picking_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('product_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('picking_id');
+            $table->foreignId('product_id');
             $table->decimal('product_uom_qty', 15, 2)->default(0);
             $table->string('state', 20)->default('draft');
             $table->timestamps();

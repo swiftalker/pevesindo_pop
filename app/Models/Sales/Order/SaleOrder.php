@@ -2,6 +2,10 @@
 
 namespace App\Models\Sales\Order;
 
+use App\Models\Odoo\Core\Company;
+use App\Models\Odoo\Core\Partner;
+use App\Models\Sales\Intent\Intent;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,22 +13,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
- * @property string $center_app_ref
+ * @property string $pop_app_ref
  * @property int $intent_id
  * @property int $odoo_id
  * @property string $name
  * @property int $company_id
  * @property int $partner_id
  * @property int $team_id
- * @property \Carbon\Carbon $date_order
+ * @property Carbon $date_order
  * @property float $amount_total
  * @property string $sale_state
  * @property string $payment_state
  * @property string $note
  * @property string $sync_state
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property \Carbon\Carbon $deleted_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  */
 class SaleOrder extends Model
 {
@@ -36,7 +40,7 @@ class SaleOrder extends Model
      * @var array
      */
     protected $fillable = [
-        'center_app_ref',
+        'pop_app_ref',
         'intent_id',
         'odoo_id',
         'name',
@@ -71,17 +75,17 @@ class SaleOrder extends Model
 
     public function intent(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Sales\Intent\Intent::class);
+        return $this->belongsTo(Intent::class);
     }
 
     public function company(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Company::class);
+        return $this->belongsTo(Company::class);
     }
 
     public function partner(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Partner::class);
+        return $this->belongsTo(Partner::class);
     }
 
     public function team(): BelongsTo

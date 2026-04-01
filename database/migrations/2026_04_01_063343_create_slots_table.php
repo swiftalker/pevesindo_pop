@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('slots', function (Blueprint $table) {
             $table->id();
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('company_id');
             $table->timestamp('start_datetime');
             $table->timestamp('end_datetime');
             $table->string('state', 20)->default('draft');

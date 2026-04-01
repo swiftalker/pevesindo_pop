@@ -2,6 +2,13 @@
 
 namespace App\Models\SupplyChain\Inventory;
 
+use App\Models\Odoo\Core\Partner;
+use App\Models\Odoo\HR\Employee\Employee;
+use App\Models\Odoo\SupplyChain\Fleet\Vehicle;
+use App\Models\Odoo\SupplyChain\Inventory\Warehouse;
+use App\Models\Sales\Order\SaleOrder;
+use App\Models\Services\FieldService\Task;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,21 +16,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
- * @property string $center_app_ref
+ * @property string $pop_app_ref
  * @property int $order_id
  * @property int $fsm_task_id
  * @property int $odoo_id
  * @property string $name
  * @property int $partner_id
  * @property int $warehouse_id
- * @property \Carbon\Carbon $scheduled_date
+ * @property Carbon $scheduled_date
  * @property int $driver_id
  * @property int $vehicle_id
  * @property string $delivery_state
  * @property string $sync_state
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property \Carbon\Carbon $deleted_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  */
 class DeliveryOrder extends Model
 {
@@ -35,7 +42,7 @@ class DeliveryOrder extends Model
      * @var array
      */
     protected $fillable = [
-        'center_app_ref',
+        'pop_app_ref',
         'order_id',
         'fsm_task_id',
         'odoo_id',
@@ -70,31 +77,31 @@ class DeliveryOrder extends Model
 
     public function order(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Sales\Order\SaleOrder::class);
+        return $this->belongsTo(SaleOrder::class);
     }
 
     public function fsmTask(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Services\FieldService\Task::class);
+        return $this->belongsTo(Task::class);
     }
 
     public function partner(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Partner::class);
+        return $this->belongsTo(Partner::class);
     }
 
     public function warehouse(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\SupplyChain\Inventory\Warehouse::class);
+        return $this->belongsTo(Warehouse::class);
     }
 
     public function driver(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\HR\Employee\Employee::class);
+        return $this->belongsTo(Employee::class);
     }
 
     public function vehicle(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\SupplyChain\Fleet\Vehicle::class);
+        return $this->belongsTo(Vehicle::class);
     }
 }

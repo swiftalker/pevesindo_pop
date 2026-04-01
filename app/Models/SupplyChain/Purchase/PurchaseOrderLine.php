@@ -2,13 +2,16 @@
 
 namespace App\Models\SupplyChain\Purchase;
 
+use App\Models\Odoo\Finance\Accounting\AnalyticAccount;
+use App\Models\Odoo\SupplyChain\Inventory\Product;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
- * @property string $center_app_ref
+ * @property string $pop_app_ref
  * @property int $order_id
  * @property int $odoo_id
  * @property int $product_id
@@ -18,8 +21,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property float $price_unit
  * @property float $price_subtotal
  * @property string $sync_state
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class PurchaseOrderLine extends Model
 {
@@ -31,7 +34,7 @@ class PurchaseOrderLine extends Model
      * @var array
      */
     protected $fillable = [
-        'center_app_ref',
+        'pop_app_ref',
         'order_id',
         'odoo_id',
         'product_id',
@@ -63,16 +66,16 @@ class PurchaseOrderLine extends Model
 
     public function order(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\SupplyChain\Purchase\PurchaseOrder::class);
+        return $this->belongsTo(PurchaseOrder::class);
     }
 
     public function product(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\SupplyChain\Inventory\Product::class);
+        return $this->belongsTo(Product::class);
     }
 
     public function analyticAccount(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Finance\Accounting\AnalyticAccount::class);
+        return $this->belongsTo(AnalyticAccount::class);
     }
 }

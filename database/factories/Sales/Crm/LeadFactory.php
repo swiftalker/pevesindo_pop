@@ -12,7 +12,7 @@ class LeadFactory extends Factory
     public function definition(): array
     {
         return [
-            'center_app_ref' => fake()->uuid(),
+            'pop_app_ref' => fake()->uuid(),
             'intent_id' => Sales\Intent\Intent::factory(),
             'odoo_id' => fake()->numberBetween(-10000, 10000),
             'team_id' => Odoo\Sales\Crm\Team::factory(),

@@ -15,13 +15,13 @@ return new class extends Migration
 
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->uuid('center_app_ref')->unique();
-            $table->foreignId('employee_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->uuid('pop_app_ref')->unique();
+            $table->foreignId('employee_id');
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('product_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('project_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('analytic_account_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('company_id');
+            $table->foreignId('product_id')->nullable();
+            $table->foreignId('project_id')->nullable();
+            $table->foreignId('analytic_account_id')->nullable();
             $table->string('name');
             $table->string('payment_mode', 20)->default('employee');
             $table->decimal('total_amount', 15, 2)->default(0);

@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('leads', function (Blueprint $table) {
             $table->id();
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('team_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('company_id');
+            $table->foreignId('team_id')->nullable();
             $table->string('name');
             $table->decimal('expected_revenue', 15, 2)->default(0);
             $table->decimal('probability', 5, 2)->default(0);

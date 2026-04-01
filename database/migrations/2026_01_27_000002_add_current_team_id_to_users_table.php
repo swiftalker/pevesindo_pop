@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreignId('current_team_id')
                 ->nullable()
                 ->after('password')
-                ->constrained('teams')
+
                 ->nullOnDelete();
         });
     }

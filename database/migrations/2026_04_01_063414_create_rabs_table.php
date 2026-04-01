@@ -15,11 +15,11 @@ return new class extends Migration
 
         Schema::create('rabs', function (Blueprint $table) {
             $table->id();
-            $table->uuid('center_app_ref')->unique();
-            $table->foreignId('project_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('intent_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->uuid('pop_app_ref')->unique();
+            $table->foreignId('project_id');
+            $table->foreignId('intent_id');
             $table->integer('odoo_invoice_id')->nullable()->index();
-            $table->foreignId('team_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('team_id')->nullable();
             $table->decimal('total', 15, 2)->default(0);
             $table->string('rab_state', 20)->default('draft');
             $table->text('note')->nullable();

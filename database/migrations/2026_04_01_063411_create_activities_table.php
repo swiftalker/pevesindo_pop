@@ -15,8 +15,8 @@ return new class extends Migration
 
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('subject_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('subject_id');
             $table->string('subject_type', 100);
             $table->string('description');
             $table->json('properties')->nullable();

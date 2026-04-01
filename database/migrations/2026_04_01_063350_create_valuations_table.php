@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('valuations', function (Blueprint $table) {
             $table->id();
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('product_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('product_id');
             $table->decimal('quantity', 15, 2)->default(0);
             $table->decimal('value', 15, 2)->default(0);
             $table->timestamps();

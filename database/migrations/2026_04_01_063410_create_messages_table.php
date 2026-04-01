@@ -15,8 +15,8 @@ return new class extends Migration
 
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('messageable_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('messageable_id');
             $table->string('messageable_type', 100);
             $table->text('body');
             $table->boolean('is_internal')->default(false);

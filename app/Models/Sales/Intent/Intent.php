@@ -2,14 +2,22 @@
 
 namespace App\Models\Sales\Intent;
 
+use App\Enums\Sales\Intent\IntentState;
+use App\Enums\Sales\Intent\PipelineStage;
+use App\Enums\Sales\Intent\SalesType;
+use App\Models\Auth\User;
+use App\Models\Odoo\Core\Company;
+use App\Models\Odoo\Sales\Pricelist\Pricelist;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
- * @property string $center_app_ref
+ * @property string $pop_app_ref
  * @property int $user_id
  * @property int $company_id
  * @property string $sales_type
@@ -24,9 +32,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $odoo_lead_id
  * @property int $odoo_order_id
  * @property string $sync_state
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property \Carbon\Carbon $deleted_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  */
 class Intent extends Model
 {
@@ -38,7 +46,7 @@ class Intent extends Model
      * @var array
      */
     protected $fillable = [
-        'center_app_ref',
+        'pop_app_ref',
         'user_id',
         'company_id',
         'sales_type',
@@ -52,6 +60,8 @@ class Intent extends Model
         'note',
         'odoo_lead_id',
         'odoo_order_id',
+        'odoo_picking_id',
+        'odoo_purchase_id',
         'sync_state',
     ];
 
@@ -68,29 +78,29 @@ class Intent extends Model
             'company_id' => 'integer',
             'pricelist_id' => 'integer',
             'expected_revenue' => 'decimal:2',
-            'sales_type' => \App\Enums\Sales\Intent\SalesType::class,
-            'intent_state' => \App\Enums\Sales\Intent\IntentState::class,
-            'pipeline_stage' => \App\Enums\Sales\Intent\PipelineStage::class,
+            'sales_type' => SalesType::class,
+            'intent_state' => IntentState::class,
+            'pipeline_stage' => PipelineStage::class,
         ];
     }
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Auth\User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function company(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Company::class);
+        return $this->belongsTo(Company::class);
     }
 
     public function pricelist(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Sales\Pricelist\Pricelist::class);
+        return $this->belongsTo(Pricelist::class);
     }
 
-    public function intentItems(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function intentItems(): HasMany
     {
-        return $this->hasMany(\App\Models\Sales\Intent\IntentItem::class);
+        return $this->hasMany(IntentItem::class);
     }
 }

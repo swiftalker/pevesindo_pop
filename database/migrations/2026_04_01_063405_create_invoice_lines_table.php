@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('invoice_lines', function (Blueprint $table) {
             $table->id();
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('invoice_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('product_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('invoice_id');
+            $table->foreignId('product_id')->nullable();
             $table->text('name');
             $table->decimal('quantity', 15, 2)->default(1);
             $table->decimal('price_unit', 15, 2)->default(0);

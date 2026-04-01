@@ -15,13 +15,13 @@ return new class extends Migration
 
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->uuid('center_app_ref')->unique();
+            $table->uuid('pop_app_ref')->unique();
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('partner_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('project_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('company_id');
+            $table->foreignId('partner_id');
+            $table->foreignId('project_id')->nullable();
             $table->string('name');
-            $table->foreignId('assigned_to')->nullable()->constrained('employees', 'to')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('assigned_to')->nullable();
             $table->text('worksheet_result')->nullable();
             $table->timestamp('reschedule_requested_at')->nullable();
             $table->text('reschedule_reason')->nullable();

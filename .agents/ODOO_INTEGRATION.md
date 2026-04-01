@@ -68,7 +68,7 @@ Odoo API diakses melalui Service Class terpusat menggunakan Laravel Http facade.
 
 Setiap job yang push ke Odoo harus idempotent untuk mencegah duplikasi data.
 
-- Setiap payload membawa center_app_ref sebagai external reference
-- Sebelum create record baru, sistem memeriksa apakah center_app_ref sudah ada di Odoo
+- Setiap payload membawa pop_app_ref sebagai external reference
+- Sebelum create record baru, sistem memeriksa apakah pop_app_ref sudah ada di Odoo
 - Jika sudah ada → update. Jika belum ada → create baru
-- Implementasi: UniqueJobMiddleware pada OdooSyncJob menggunakan job unique key berbasis center_app_ref
+- Implementasi: UniqueJobMiddleware pada OdooSyncJob menggunakan job unique key berbasis pop_app_ref

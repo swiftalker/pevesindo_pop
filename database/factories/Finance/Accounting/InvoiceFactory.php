@@ -2,13 +2,6 @@
 
 namespace Database\Factories\Finance\Accounting;
 
-use App\Models\Finance\Accounting\Odoo\Sales\Crm\Team;
-use App\Models\Odoo\Core\Odoo\Core\Company;
-use App\Models\Odoo\Core\Odoo\Core\Partner;
-use App\Models\Odoo\Finance\Accounting\Odoo\Finance\Accounting\AnalyticAccount;
-use App\Models\Odoo\Finance\Accounting\Odoo\Sales\Crm\Team;
-use App\Models\Sales\Order\Sales\Order\SaleOrder;
-use App\Models\Services\Project\Services\Project\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class InvoiceFactory extends Factory
@@ -19,7 +12,7 @@ class InvoiceFactory extends Factory
     public function definition(): array
     {
         return [
-            'center_app_ref' => fake()->uuid(),
+            'pop_app_ref' => fake()->uuid(),
             'order_id' => Sales\Order\SaleOrder::factory(),
             'project_id' => Services\Project\Project::factory(),
             'odoo_id' => fake()->numberBetween(-10000, 10000),

@@ -2,8 +2,6 @@
 
 namespace Database\Factories\SupplyChain\Purchase;
 
-use App\Models\Odoo\Core\Odoo\Core\Partner;
-use App\Models\Services\Project\Services\Project\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PurchaseOrderFactory extends Factory
@@ -14,7 +12,7 @@ class PurchaseOrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'center_app_ref' => fake()->uuid(),
+            'pop_app_ref' => fake()->uuid(),
             'project_id' => Services\Project\Project::factory(),
             'odoo_id' => fake()->numberBetween(-10000, 10000),
             'partner_id' => Odoo\Core\Partner::factory(),

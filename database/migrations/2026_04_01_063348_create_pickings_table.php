@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('pickings', function (Blueprint $table) {
             $table->id();
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('partner_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('company_id');
+            $table->foreignId('partner_id')->nullable();
             $table->string('name');
             $table->string('picking_type_code', 20);
             $table->string('state', 20)->default('draft');

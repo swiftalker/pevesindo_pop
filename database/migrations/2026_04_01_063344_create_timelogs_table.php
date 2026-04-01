@@ -15,10 +15,10 @@ return new class extends Migration
 
         Schema::create('timelogs', function (Blueprint $table) {
             $table->id();
-            $table->uuid('center_app_ref')->unique();
-            $table->foreignId('fsm_task_id')->constrained('tasks')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->uuid('pop_app_ref')->unique();
+            $table->foreignId('fsm_task_id');
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('employee_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('employee_id');
             $table->string('name')->nullable();
             $table->decimal('unit_amount', 5, 2)->default(0);
             $table->date('date');

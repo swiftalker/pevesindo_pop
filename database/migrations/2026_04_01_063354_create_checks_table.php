@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('checks', function (Blueprint $table) {
             $table->id();
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('product_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('company_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('product_id');
+            $table->foreignId('company_id');
             $table->string('quality_state', 20)->default('none');
             $table->timestamps();
         });

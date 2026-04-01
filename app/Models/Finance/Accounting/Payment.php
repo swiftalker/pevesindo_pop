@@ -2,6 +2,8 @@
 
 namespace App\Models\Finance\Accounting;
 
+use App\Models\Odoo\Finance\Accounting\Journal;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,17 +11,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
- * @property string $center_app_ref
+ * @property string $pop_app_ref
  * @property int $invoice_id
  * @property int $odoo_id
  * @property int $journal_id
  * @property float $amount
- * @property \Carbon\Carbon $payment_date
+ * @property Carbon $payment_date
  * @property string $payment_state
  * @property string $sync_state
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property \Carbon\Carbon $deleted_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  */
 class Payment extends Model
 {
@@ -31,7 +33,7 @@ class Payment extends Model
      * @var array
      */
     protected $fillable = [
-        'center_app_ref',
+        'pop_app_ref',
         'invoice_id',
         'odoo_id',
         'journal_id',
@@ -59,11 +61,11 @@ class Payment extends Model
 
     public function invoice(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Finance\Accounting\Invoice::class);
+        return $this->belongsTo(Invoice::class);
     }
 
     public function journal(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Finance\Accounting\Journal::class);
+        return $this->belongsTo(Journal::class);
     }
 }

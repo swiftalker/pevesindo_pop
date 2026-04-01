@@ -36,7 +36,7 @@ Semua operasi bersifat realtime via Livewire. Setiap aksi user langsung mengubah
 
 | **State**      | **Badge**     | **Keterangan**                                     |
 | -------------- | ------------- | -------------------------------------------------- |
-| :local_draft   | Abu-abu       | Dibuat di Center-App, belum pernah dikirim ke Odoo |
+| :local_draft   | Abu-abu       | Dibuat di Pop-App, belum pernah dikirim ke Odoo |
 | :syncing       | Biru berputar | Job Queue aktif, request sedang dikirim            |
 | :pending_retry | Kuning        | Request gagal, menunggu retry berikutnya           |
 | :dirty         | Oranye        | Data lokal berbeda dengan yang diketahui Odoo      |

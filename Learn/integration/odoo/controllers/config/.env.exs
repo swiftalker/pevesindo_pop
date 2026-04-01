@@ -1,0 +1,5 @@
+System.put_env("ODOO_URL", "https://pevesindo-staging5.odoo.com")
+System.put_env("ODOO_DATABASE", "pevesindo-staging5")
+System.put_env("ODOO_API_KEY", "6d6e0079c45b604f7a282710f3eb2a383934480b")
+System.put_env("ODOO_LOGIN", "franchise@pevesindo.co.id")
+System.put_env("ODOO_PASSWORD", "Pevesindo432@")

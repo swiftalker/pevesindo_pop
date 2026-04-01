@@ -15,11 +15,11 @@ return new class extends Migration
 
         Schema::create('rab_lines', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('rab_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('rab_id');
             $table->integer('odoo_invoice_line_id')->nullable()->index();
             $table->integer('sequence')->default(10);
             $table->string('display_type', 20)->nullable();
-            $table->foreignId('product_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('product_id')->nullable();
             $table->text('name');
             $table->decimal('quantity', 15, 2)->default(1);
             $table->decimal('unit_price', 15, 2)->default(0);
