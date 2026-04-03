@@ -92,4 +92,9 @@ class SaleOrder extends Model
     {
         return $this->belongsTo(Odoo\Sales\Crm\Team::class);
     }
+
+    public function orderLines(): HasMany
+    {
+        return $this->hasMany(SaleOrderLine::class);
+    }
 }

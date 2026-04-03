@@ -3,7 +3,7 @@
 namespace App\Filament\Admin\Resources\Odoo\Companies\Pages;
 
 use App\Filament\Admin\Resources\Odoo\Companies\CompanyResource;
-use App\Jobs\Odoo\Core\CompanySync;
+use App\Engine\Odoo\Jobs\System\SyncCompaniesJob;
 use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
@@ -21,7 +21,7 @@ class ListCompanies extends ListRecords
                 ->color('primary')
                 ->requiresConfirmation()
                 ->action(function () {
-                    CompanySync::dispatch();
+                    SyncCompaniesJob::dispatch();
 
                     Notification::make()
                         ->title('Sync Started')

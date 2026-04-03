@@ -2,8 +2,8 @@
 
 namespace App\Models\Odoo\Sync;
 
-use App\Enums\Odoo\SyncTaskStatus;
-use App\Enums\Odoo\SyncTaskType;
+use App\Engine\Odoo\Enums\SyncTaskStatus;
+use App\Engine\Odoo\Enums\SyncTaskType;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

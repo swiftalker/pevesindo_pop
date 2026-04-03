@@ -3,7 +3,7 @@
 namespace App\Filament\Admin\Resources\Odoo\Companies\Pages;
 
 use App\Filament\Admin\Resources\Odoo\Companies\CompanyResource;
-use App\Jobs\Odoo\Core\CompanySync;
+use App\Engine\Odoo\Jobs\System\SyncCompaniesJob;
 use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
@@ -20,14 +20,11 @@ class ViewCompany extends ViewRecord
                 ->icon('heroicon-o-arrow-path')
                 ->color('primary')
                 ->requiresConfirmation()
+                ->modalHeading('Sinkronisasi Master Data')
+                ->modalDescription('Perusahaan, kontak, jurnal, rekening bank, dan akun analitik akan ditarik dari Odoo.')
                 ->action(function () {
-                    CompanySync::dispatch();
-
-                    Notification::make()
-                        ->title('Sync Started')
-                        ->body('Company synchronization is running in the background.')
-                        ->success()
-                        ->send();
+                    $userId = auth()->id();
+                    dispatch(new SyncCompaniesJob($userId));
                 }),
         ];
     }

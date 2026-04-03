@@ -16,10 +16,12 @@ description: >
 > 3. All PUSH operations to Odoo **must** go through a queued Laravel Job — never directly from a Controller or Livewire component.
 > 4. Every payload pushed to Odoo must carry a `pop_app_ref` for idempotency.
 > 5. Reference data (journals, customers, pricelists) must be cached — never fetched in real-time during UI rendering.
-> 6. Odoo quota is a hard constraint: **100,000 requests/month**. Every call must be justified.
+> 6. Odoo quota is a hard constraint: **100,000 requests/month** and **Rate Limiting*. Every call must be justified.
 > 7. The source of references you can look `.agents/skills/odoo-integration/references` for more information
 > 8. instead of opening odoo documentation online, you can see `.agents/skills/odoo-integration/references`, for example if I reference Odoo documentation via online such as `https://www.odoo.com/documentation/19.0/applications/finance/accounting.html` then you only need to see `.agents/skills/odoo-integration/references/odoo documentation 19.0 content/applications/finance/accounting.rst`, instead of online will cause latency, you only need to see this documentation directly.
 > 9. Make sure you dont waste time to read everytime, if you was understand then you just specifically refer to the file documentation. REMEMBER: Dont waste time to read again and again.
+> 10. Odoo had a CSRF Constraint, it must be concerned to get session_id and csrf_token from Odoo web session. It was for report things.
+> 11. 
 
 ---
 
@@ -296,6 +298,84 @@ class OdooGateway
 
 ### 4.1 Domain Naming — Business First, Not Odoo Model Names
 
+Instead of following Odoo model names (e.g. `res.partner`, `sale.order`),
+we organize the system based on **business domains / application modules**.
+
+This aligns with how Odoo itself structures features, and improves:
+- readability
+- scalability
+- team cognition
+- separation of concerns
+
+---
+
+#### 4.1.1 High-Level Domain Mapping
+
+Each domain represents a **bounded context**.
+
+Odoo model names are treated as implementation details, not structure drivers.
+
+##### 4.1.1.1 Core Domains
+
+- Essentials
+  - Contacts
+  - Activities
+  - Reporting
+  - Import/Export
+  - Search/Filter
+  - Editor
+
+- Finance
+  - Accounting
+  - Invoicing
+  - Expenses
+  - Payments
+
+- Sales
+  - CRM
+  - Sales
+  - POS
+  - Subscriptions
+  - Rental
+
+- SupplyChain
+  - Inventory
+  - Manufacturing
+  - Purchase
+  - Quality
+  - Maintenance
+
+- HumanResources
+  - Employees
+  - Payroll
+  - Attendance
+  - Recruitment
+
+- Marketing
+  - EmailMarketing
+  - Automation
+  - Events
+  - Surveys
+
+- Services
+  - Project
+  - Timesheets
+  - Planning
+  - Helpdesk
+
+- Productivity
+  - Documents
+  - Calendar
+  - Chat
+  - Tasks
+
+- System
+  - Users
+  - Companies
+  - Settings
+  - Integrations
+
+#### 4.1.2 Needs
 Odoo model names are implementation details. They belong **only** in:
 - `OdooClient` / `OdooGateway` (the transport layer)
 - Mapper classes
@@ -366,7 +446,7 @@ class PushDraftOrder implements SyncActionInterface
 
 ### 5.2 Queue Priority
 
-Use named queues to control priority:
+Use named queues to control priority. Example:
 
 | Queue Name | Operations |
 |---|---|
@@ -734,16 +814,17 @@ Before making a request:
 if (CircuitBreaker::isOpen($domain)) {
     return SyncResult::fail('circuit_open');
 }
+```
 After response:
-
+```php
 CircuitBreaker::recordSuccess($domain);
 // or
 CircuitBreaker::recordFailure($domain);
+```
 
 If circuit is OPEN:
-
-Job should release with delay (backoff)
-Avoid immediate retry
+- Job should release with delay (backoff)
+- Avoid immediate retry
 2. Report Engine (Session-based)
 
 Circuit breaker is applied to:
@@ -805,30 +886,34 @@ Before making a request:
 if (CircuitBreaker::isOpen($domain)) {
     return SyncResult::fail('circuit_open');
 }
+```
 
 Configuration
 
 Example thresholds:
 
+```php
 return [
     'failure_threshold' => 5,
     'cooldown_seconds' => 60,
     'half_open_max_requests' => 2,
 ];
+```
 
 Meaning:
 
-5 consecutive failures → OPEN
-Wait 60 seconds → HALF-OPEN
-Allow 2 test requests
+- 5 consecutive failures → OPEN
+- Wait 60 seconds → HALF-OPEN
+- Allow 2 test requests
+
 Domain Isolation
 
 Each domain has its own circuit:
 
-customers
-products
-bank_accounts
-reports
+- customers
+- products
+- bank_accounts
+- reports
 
 Failure in one domain does NOT affect others.
 
@@ -836,6 +921,7 @@ Interaction with Queue (Laravel)
 
 When circuit is OPEN:
 
+```php
 public function handle()
 {
     if (CircuitBreaker::isOpen($this->domain)) {
@@ -844,25 +930,29 @@ public function handle()
 
     // proceed normally
 }
+```
 
 This ensures:
 
-Workers do not overload Odoo
-System stabilizes automatically
+- Workers do not overload Odoo
+- System stabilizes automatically
+
 Observability
 
 Recommended logging:
 
-Circuit opened
-Circuit closed
-Half-open transitions
-Failure reasons
+- Circuit opened
+- Circuit closed
+- Half-open transitions
+- Failure reasons
 
 Example:
 
+```
 [Odoo Circuit] OPEN domain=customers failures=5
 [Odoo Circuit] HALF_OPEN domain=customers
 [Odoo Circuit] CLOSED domain=customers
+```
 Summary
 
 Circuit Breaker provides:

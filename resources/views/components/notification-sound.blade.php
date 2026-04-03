@@ -1,10 +1,12 @@
-{{-- Alpine.js Notification Sound Player --}}
+{{-- Alpine.js Notification Sound Player with Looping Support --}}
 {{-- Injected via PanelsRenderHook::BODY_END in AdminPanelProvider --}}
 <div
     x-data="notificationSoundPlayer()"
     x-init="init()"
     x-on:notificationSent.camel.window="handleNotification($event.detail)"
     x-on:echo:notification.window="handleNotification($event.detail)"
+    x-on:stop-notification-sound.window="stopLoop($event.detail?.sound)"
+    x-on:mark-as-read-all.window="stopAllLoops()"
     class="hidden"
 >
 </div>
@@ -15,7 +17,7 @@ document.addEventListener('alpine:init', () => {
         sounds: {},
         muted: false,
         volume: 0.5,
-
+        loopIntervals: {},
         soundMap: {
             'crud': '{{ asset('sounds/crud.mp3') }}',
             'delivery': '{{ asset('sounds/delivery.mp3') }}',
@@ -27,7 +29,6 @@ document.addEventListener('alpine:init', () => {
         },
 
         init() {
-            console.log("HELLO WORLD")
             this.preloadSounds();
             this.listenEchoNotifications();
         },
@@ -40,7 +41,7 @@ document.addEventListener('alpine:init', () => {
                     audio.volume = this.volume;
                     this.sounds[key] = audio;
                 } catch (e) {
-                    console.warn(`[NotificationSound] Could not preload: ${key}`, e);
+                    console.warn('[NotificationSound] Could not preload: ' + key, e);
                 }
             }
         },
@@ -56,34 +57,63 @@ document.addEventListener('alpine:init', () => {
                 return;
             }
 
+            const self = this;
+
             window.Echo.private(`App.Models.Auth.User.${userId}`)
                 .notification((notification) => {
-                    console.log(notification);
-                    const sound = notification?.viewData?.sound
-                        || notification?.data?.viewData?.sound
-                        || notification?.data?.sound
-                        || notification?.sound
-                        || 'crud';
-                    this.play(sound);
+                    const data = notification?.viewData || notification?.data?.viewData || notification;
+                    const sound = data?.sound || 'crud';
+                    const loop = data?.loop || false;
+                    self.play(sound);
+                    if (loop) {
+                        self.startLoop(sound);
+                    }
                 });
         },
 
         handleNotification(detail) {
-            const sound = detail?.sound || detail?.data?.sound || 'crud';
+            const data = detail?.viewData || detail?.data?.viewData || {};
+            const sound = data?.sound || detail?.sound || 'crud';
+            const loop = data?.loop || false;
             this.play(sound);
+            if (loop) {
+                this.startLoop(sound);
+            }
         },
 
         play(soundKey) {
             if (this.muted) return;
-
             const audio = this.sounds[soundKey] || this.sounds['crud'];
             if (!audio) return;
-
             audio.currentTime = 0;
             audio.volume = this.volume;
-            audio.play().catch(e => {
-                console.warn(`[NotificationSound] Autoplay blocked for: ${soundKey}`, e);
-            });
+            audio.play().catch(() => {});
+        },
+
+        startLoop(soundKey) {
+            const self = this;
+
+            if (this.loopIntervals[soundKey]) {
+                clearInterval(this.loopIntervals[soundKey]);
+            }
+
+            this.loopIntervals[soundKey] = setInterval(() => {
+                self.play(soundKey);
+            }, 2000);
+        },
+
+        stopLoop(soundKey) {
+            if (this.loopIntervals[soundKey]) {
+                clearInterval(this.loopIntervals[soundKey]);
+                delete this.loopIntervals[soundKey];
+            }
+        },
+
+        stopAllLoops() {
+            for (const key in this.loopIntervals) {
+                clearInterval(this.loopIntervals[key]);
+            }
+            this.loopIntervals = {};
         },
 
         toggleMute() {

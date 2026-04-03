@@ -7,14 +7,11 @@ metadata:
 ---
 
 # Important things
-- For specific use of FilamentPHP for Pop-App applications, you can see the `reference` in the `.agents/skills/filament-development/reference` folder.
-- We using FilamentPHP 5.x version. 
-- 4.x version maybe *still support* but 5.x is prioritized.
-- Cause you doesnt have information about Filament 5.x or 4.x, you can read directory from `.agents/skills/filament-development/references/5.x` and   `.agents/skills/filament-development/references/4.x` to find information about Filament 5.x and 4.x.
-- Firstly, you need to READ upgrade guide from `.agents/skills/filament-development/references/4.x/14-upgrade-guide.md` to find information about Filament 4.x.
-- Secondly, you need to READ upgrade guide from `.agents/skills/filament-development/references/5.x/15-upgrade-guide.md` to find information about Filament 5.x.
-- After you understand about Filament 4.x and 5.x, you can start to build FilamentPHP admin panel.
-- Make sure you dont waste time to read everytime, if you was understand then you just specifically refer to the file documentation. REMEMBER: Dont waste time to read again and again.
+- For specific use of FilamentPHP for Pop-App applications, you can see the references in the `.agents/skills/filament-development/references` folder.
+- We strictly use **FilamentPHP 5.x** version for this Laravel 13 project. Do not use Filament 4.x patterns.
+- You can find offline documentation for Filament 5.x under the `.agents/skills/filament-development/references/5.x` directory. Use this when you need accurate reference implementation.
+- Read `.agents/skills/filament-development/references/5.x/15-upgrade-guide.md` to familiarize yourself with v5 specific changes if transitioning from v3 or v4.
+- Do not waste time re-reading the same documentation if you already hold the context. Use references precisely when needed.
 
 # Basic Concepts of Resources
 Resources are static classes that build CRUD interfaces for Eloquent models.
@@ -108,46 +105,46 @@ Filament is a full-stack framework for Laravel that provides a rich set of tools
 
 - **Resources**: The primary way to interact with models in Filament. They handle CRUD operations, list views, and detail pages.
 ##### Detail About Resources
-1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/referencex/5.x/'filamentphp filament 5.x resources'/*.md`
+1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/references/5.x/'filamentphp filament 5.x resources'/*.md`
 
 - **Panels**: Top-level containers for your Filament application. You can have multiple panels (e.g., admin, customer).
 ##### Detail About Panels
-1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/referencex/5.x/'filamentphp filament 5.x panels'/*.md`
+1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/references/5.x/'filamentphp filament 5.x panels'/*.md`
 
 - **Widgets**: Reusable UI components that can be placed on dashboards or resource pages.
 ##### Detail About Widgets
-1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/referencex/5.x/'filamentphp filament 5.x widgets'/*.md`
+1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/references/5.x/'filamentphp filament 5.x widgets'/*.md`
 
 - **Actions**: Reusable actions that can be attached to resources, tables, or widgets.
 ##### Detail About Actions
-1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/referencex/5.x/'filamentphp filament 5.x actions'/*.md`
+1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/references/5.x/'filamentphp filament 5.x actions'/*.md`
 
 - **Forms**: A powerful form builder that works seamlessly with Livewire and Eloquent.
 ##### Detail About Forms
-1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/referencex/5.x/'filamentphp filament 5.x forms'/*.md`
+1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/references/5.x/'filamentphp filament 5.x forms'/*.md`
 
 - **Tables**: A flexible table builder that supports sorting, filtering, searching, and bulk actions.
 ##### Detail About Tables
-1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/referencex/5.x/'filamentphp filament 5.x tables'/*.md`
+1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/references/5.x/'filamentphp filament 5.x tables'/*.md`
 
 - **Infolists**: A powerful infolist builder that works seamlessly with Livewire and Eloquent.
 ##### Detail About Infolists
-1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/referencex/5.x/'filamentphp filament 5.x infolists'/*.md`
+1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/references/5.x/'filamentphp filament 5.x infolists'/*.md`
 - **Notifications**: A powerful notification system that works seamlessly with Livewire and Eloquent.
 ##### Detail About Notifications
-1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/referencex/5.x/'filamentphp filament 5.x notifications'/*.md`
+1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/references/5.x/'filamentphp filament 5.x notifications'/*.md`
 
 - **Users**: By default, all App\Models\Users can access Filament locally. To allow them to access Filament in production, you must take a few extra steps to ensure that only the correct users have access to the app.
 ##### Detail About Users
-1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/referencex/5.x/'filamentphp filament 5.x users'/*.md`
+1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/references/5.x/'filamentphp filament 5.x users'/*.md`
 
 - **Styling**:In the configuration, you can easily change the colors that are used. Filament ships with 6 predefined colors that are used everywhere within the framework. They are customizable as follows:
 ##### Detail About Styling
-1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/referencex/5.x/'filamentphp filament 5.x styling'/*.md`
+1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/references/5.x/'filamentphp filament 5.x styling'/*.md`
 
 - **Schemas**: Schemas are PHP configuration objects that define UI structure declaratively. Instead of writing HTML/JavaScript, you create schema objects that control server-side rendering.
 ##### Detail About Schemas
-1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/referencex/5.x/'filamentphp filament 5.x schemas'/*.md`
+1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/references/5.x/'filamentphp filament 5.x schemas'/*.md`
 2. What are schemas?
 Schemas are PHP configuration objects that define UI structure declaratively. Instead of writing HTML/JavaScript, you create schema objects that control server-side rendering.
 **Key principle:** Schemas are containers that hold components (fields, entries, layouts). Components can nest other schemas, enabling infinite nesting levels.
@@ -162,7 +159,7 @@ Schemas are PHP configuration objects that define UI structure declaratively. In
 - **Components**: Filament packages consume a set of core components that aim to provide a consistent and maintainable foundation for all interfaces. Some of these components are also available for use in your own applications and Filament plugins.
 
 ##### Detail About Components
-1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/referencex/5.x/'filamentphp filament 5.x components'/*.md`
+1. Key-Principles: Because we are using Laravel 13, we will use Filament v5. And you need to refer docs first from `https://filamentphp.com/docs/v5` or `.agents/skills/filament-development/references/5.x/'filamentphp filament 5.x components'/*.md`
 
 
 
