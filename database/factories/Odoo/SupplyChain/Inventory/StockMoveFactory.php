@@ -2,8 +2,6 @@
 
 namespace Database\Factories\Odoo\SupplyChain\Inventory;
 
-use App\Models\Odoo\SupplyChain\Inventory\Odoo\SupplyChain\Inventory\Picking;
-use App\Models\Odoo\SupplyChain\Inventory\Odoo\SupplyChain\Inventory\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StockMoveFactory extends Factory

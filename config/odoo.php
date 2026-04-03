@@ -14,7 +14,7 @@ return [
 
     'base_url' => env('ODOO_BASE_URL', 'https://pevesindo-staging6.odoo.com/'),
 
-    'database' => env('ODOO_DATABASE', 'pevesindo_staging6'),
+    'database' => env('ODOO_DATABASE', 'pevesindo-staging6'),
 
     'api_key' => env('ODOO_API_KEY'),
 

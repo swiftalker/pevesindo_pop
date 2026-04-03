@@ -9,7 +9,7 @@ enum PaymentMode: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::EMPLOYEE => 'Employee (Karyawan)',
             self::COMPANY => 'Company (Perusahaan)',
         };

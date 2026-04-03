@@ -2,8 +2,6 @@
 
 namespace Database\Factories\Odoo\SupplyChain\Manufacture;
 
-use App\Models\Odoo\Core\Odoo\Core\Company;
-use App\Models\Odoo\SupplyChain\Inventory\Odoo\SupplyChain\Inventory\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BomFactory extends Factory

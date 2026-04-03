@@ -2,8 +2,6 @@
 
 namespace Database\Factories\Odoo\SupplyChain\Purchase;
 
-use App\Models\Odoo\Core\Odoo\Core\Company;
-use App\Models\Odoo\Core\Odoo\Core\Partner;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrderFactory extends Factory

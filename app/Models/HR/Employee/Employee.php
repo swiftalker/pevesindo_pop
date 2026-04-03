@@ -2,6 +2,9 @@
 
 namespace App\Models\HR\Employee;
 
+use App\Models\Odoo\Core\Company;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,8 +17,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $job_title
  * @property int $company_id
  * @property bool $is_active
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Employee extends Model
 {
@@ -52,11 +55,11 @@ class Employee extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function company(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Company::class);
+        return $this->belongsTo(Company::class);
     }
 }

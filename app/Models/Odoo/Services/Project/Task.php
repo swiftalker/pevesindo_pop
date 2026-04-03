@@ -2,6 +2,8 @@
 
 namespace App\Models\Odoo\Services\Project;
 
+use App\Models\Odoo\Core\Company;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,8 +14,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $project_id
  * @property int $company_id
  * @property string $name
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Task extends Model
 {
@@ -47,11 +49,11 @@ class Task extends Model
 
     public function project(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Services\Project\Project::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function company(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Company::class);
+        return $this->belongsTo(Company::class);
     }
 }

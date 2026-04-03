@@ -2,6 +2,9 @@
 
 namespace App\Models\Odoo\Sales\Order;
 
+use App\Models\Odoo\Finance\Accounting\AnalyticAccount;
+use App\Models\Odoo\SupplyChain\Inventory\Product;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -20,8 +23,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property float $price_subtotal
  * @property float $discount
  * @property float $tax_amount
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class SaleOrderLine extends Model
 {
@@ -69,16 +72,16 @@ class SaleOrderLine extends Model
 
     public function order(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Sales\Order\SaleOrder::class);
+        return $this->belongsTo(SaleOrder::class);
     }
 
     public function product(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\SupplyChain\Inventory\Product::class);
+        return $this->belongsTo(Product::class);
     }
 
     public function analyticAccount(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Finance\Accounting\AnalyticAccount::class);
+        return $this->belongsTo(AnalyticAccount::class);
     }
 }

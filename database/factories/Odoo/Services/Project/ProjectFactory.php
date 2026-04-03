@@ -2,9 +2,6 @@
 
 namespace Database\Factories\Odoo\Services\Project;
 
-use App\Models\Odoo\Core\Odoo\Core\Company;
-use App\Models\Odoo\Core\Odoo\Core\Partner;
-use App\Models\Odoo\Finance\Accounting\Odoo\Finance\Accounting\AnalyticAccount;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProjectFactory extends Factory

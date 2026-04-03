@@ -2,8 +2,6 @@
 
 namespace Database\Factories\Odoo\Finance\Accounting;
 
-use App\Models\Odoo\Core\Odoo\Core\Company;
-use App\Models\Odoo\Finance\Accounting\Odoo\Finance\Accounting\AnalyticPlan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AnalyticAccountFactory extends Factory

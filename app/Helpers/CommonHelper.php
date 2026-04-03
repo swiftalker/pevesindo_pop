@@ -2,7 +2,7 @@
 
 use App\Enums\NotificationSound;
 use App\Models\Auth\User;
-use Filament\Notifications\Actions\Action;
+use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 
 if (! function_exists('notify')) {

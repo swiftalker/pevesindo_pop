@@ -2,6 +2,8 @@
 
 namespace App\Models\Odoo\Finance\Accounting;
 
+use App\Models\Odoo\Core\Company;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,8 +15,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $company_id
  * @property string $name
  * @property string $code
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class AnalyticAccount extends Model
 {
@@ -49,11 +51,11 @@ class AnalyticAccount extends Model
 
     public function plan(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Finance\Accounting\AnalyticPlan::class);
+        return $this->belongsTo(AnalyticPlan::class);
     }
 
     public function company(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Company::class);
+        return $this->belongsTo(Company::class);
     }
 }

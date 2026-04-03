@@ -15,7 +15,7 @@ enum PipelineStage: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::COLD => 'Cold',
             self::WARM => 'Warm',
             self::HOT => 'Hot',

@@ -2,8 +2,6 @@
 
 namespace Database\Factories\SupplyChain\Inventory;
 
-use App\Models\Odoo\SupplyChain\Inventory\Odoo\SupplyChain\Inventory\Product;
-use App\Models\SupplyChain\Inventory\SupplyChain\Inventory\DeliveryOrder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DeliveryOrderLineFactory extends Factory

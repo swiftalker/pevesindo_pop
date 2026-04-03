@@ -2,6 +2,8 @@
 
 namespace App\Models\Odoo\Services\Planning;
 
+use App\Models\Odoo\Core\Company;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,11 +12,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property int $odoo_id
  * @property int $company_id
- * @property \Carbon\Carbon $start_datetime
- * @property \Carbon\Carbon $end_datetime
+ * @property Carbon $start_datetime
+ * @property Carbon $end_datetime
  * @property string $state
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Slot extends Model
 {
@@ -50,6 +52,6 @@ class Slot extends Model
 
     public function company(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Company::class);
+        return $this->belongsTo(Company::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models\Odoo\Sales\Pricelist;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,8 +14,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property float $min_quantity
  * @property float $fixed_price
  * @property float $percent_price
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class PricelistItem extends Model
 {
@@ -51,6 +52,6 @@ class PricelistItem extends Model
 
     public function pricelist(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Sales\Pricelist\Pricelist::class);
+        return $this->belongsTo(Pricelist::class);
     }
 }

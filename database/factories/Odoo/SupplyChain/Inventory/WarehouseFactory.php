@@ -2,7 +2,6 @@
 
 namespace Database\Factories\Odoo\SupplyChain\Inventory;
 
-use App\Models\Odoo\Core\Odoo\Core\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class WarehouseFactory extends Factory

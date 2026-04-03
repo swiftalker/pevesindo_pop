@@ -2,6 +2,9 @@
 
 namespace App\Models\Odoo\HR\Employee;
 
+use App\Models\Odoo\Core\Company;
+use App\Models\Odoo\HR\Department\Department;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,8 +16,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $department_id
  * @property string $name
  * @property string $job_title
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Employee extends Model
 {
@@ -49,11 +52,11 @@ class Employee extends Model
 
     public function company(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Company::class);
+        return $this->belongsTo(Company::class);
     }
 
     public function department(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\HR\Department\Department::class);
+        return $this->belongsTo(Department::class);
     }
 }

@@ -2,9 +2,6 @@
 
 namespace Database\Factories\Odoo\Sales\Order;
 
-use App\Models\Odoo\Finance\Accounting\Odoo\Finance\Accounting\AnalyticAccount;
-use App\Models\Odoo\Sales\Order\Odoo\Sales\Order\SaleOrder;
-use App\Models\Odoo\SupplyChain\Inventory\Odoo\SupplyChain\Inventory\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SaleOrderLineFactory extends Factory

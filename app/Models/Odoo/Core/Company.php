@@ -5,6 +5,7 @@ namespace App\Models\Odoo\Core;
 use App\Models\Odoo\Finance\AnalyticAccount;
 use App\Models\Odoo\Finance\BankAccount;
 use App\Models\Odoo\Finance\Journal;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,8 +20,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $code
  * @property string $currency
  * @property bool $is_active
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Company extends Model
 {

@@ -4,6 +4,7 @@ namespace App\Models\Odoo\Finance;
 
 use App\Models\Odoo\Core\Company;
 use App\Models\Odoo\Core\Partner;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -16,8 +17,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $acc_number
  * @property string $acc_holder_name
  * @property bool $is_active
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class BankAccount extends Model
 {

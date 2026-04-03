@@ -2,9 +2,6 @@
 
 namespace Database\Factories\Odoo\SupplyChain\Purchase;
 
-use App\Models\Odoo\Finance\Accounting\Odoo\Finance\Accounting\AnalyticAccount;
-use App\Models\Odoo\SupplyChain\Inventory\Odoo\SupplyChain\Inventory\Product;
-use App\Models\Odoo\SupplyChain\Purchase\Odoo\SupplyChain\Purchase\Order;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrderLineFactory extends Factory

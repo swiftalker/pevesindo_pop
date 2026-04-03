@@ -2,7 +2,6 @@
 
 namespace Database\Factories\Odoo\Services\Timesheet;
 
-use App\Models\Odoo\Services\Project\Odoo\Services\Project\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TimelogFactory extends Factory

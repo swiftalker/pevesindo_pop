@@ -2,6 +2,9 @@
 
 namespace App\Models\Odoo\Finance\Accounting;
 
+use App\Models\Odoo\Core\Company;
+use App\Models\Odoo\Core\Partner;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -20,8 +23,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $payment_state
  * @property string $note
  * @property string $x_studio_many2many_field_4jv_1jeesssc3
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Invoice extends Model
 {
@@ -67,12 +70,12 @@ class Invoice extends Model
 
     public function company(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Company::class);
+        return $this->belongsTo(Company::class);
     }
 
     public function partner(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Partner::class);
+        return $this->belongsTo(Partner::class);
     }
 
     public function team(): BelongsTo
@@ -82,6 +85,6 @@ class Invoice extends Model
 
     public function analyticAccount(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Finance\Accounting\AnalyticAccount::class);
+        return $this->belongsTo(AnalyticAccount::class);
     }
 }

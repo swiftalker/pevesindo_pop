@@ -2,6 +2,9 @@
 
 namespace App\Models\Odoo\Finance\Expenses;
 
+use App\Models\Odoo\Core\Company;
+use App\Models\Odoo\HR\Employee\Employee;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,8 +16,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $company_id
  * @property string $name
  * @property string $state
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class ExpenseSheet extends Model
 {
@@ -49,11 +52,11 @@ class ExpenseSheet extends Model
 
     public function employee(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\HR\Employee\Employee::class);
+        return $this->belongsTo(Employee::class);
     }
 
     public function company(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Company::class);
+        return $this->belongsTo(Company::class);
     }
 }

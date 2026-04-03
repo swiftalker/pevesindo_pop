@@ -2,8 +2,6 @@
 
 namespace Database\Factories\Odoo\HR\Employee;
 
-use App\Models\Odoo\Core\Odoo\Core\Company;
-use App\Models\Odoo\HR\Department\Odoo\HR\Department\Department;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EmployeeFactory extends Factory

@@ -2,9 +2,6 @@
 
 namespace Database\Factories\Odoo\Sales\Order;
 
-use App\Models\Odoo\Core\Odoo\Core\Company;
-use App\Models\Odoo\Core\Odoo\Core\Partner;
-use App\Models\Odoo\Sales\Order\Odoo\Sales\Crm\Team;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SaleOrderFactory extends Factory

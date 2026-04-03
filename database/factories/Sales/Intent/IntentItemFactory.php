@@ -2,8 +2,6 @@
 
 namespace Database\Factories\Sales\Intent;
 
-use App\Models\Odoo\SupplyChain\Inventory\Odoo\SupplyChain\Inventory\Product;
-use App\Models\Sales\Intent\Sales\Intent\Intent;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class IntentItemFactory extends Factory

@@ -2,6 +2,8 @@
 
 namespace App\Models\Odoo\Services\Timesheet;
 
+use App\Models\Odoo\Services\Project\Project;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,9 +14,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $project_id
  * @property string $name
  * @property float $unit_amount
- * @property \Carbon\Carbon $date
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $date
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Timelog extends Model
 {
@@ -50,6 +52,6 @@ class Timelog extends Model
 
     public function project(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Services\Project\Project::class);
+        return $this->belongsTo(Project::class);
     }
 }

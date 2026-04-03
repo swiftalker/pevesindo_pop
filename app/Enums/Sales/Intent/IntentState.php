@@ -11,7 +11,7 @@ enum IntentState: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::PROSPECT => 'Prospect',
             self::PIPELINE => 'Pipeline',
             self::COMPLETED => 'Completed',

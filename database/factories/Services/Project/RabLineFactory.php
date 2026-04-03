@@ -2,8 +2,6 @@
 
 namespace Database\Factories\Services\Project;
 
-use App\Models\Odoo\SupplyChain\Inventory\Odoo\SupplyChain\Inventory\Product;
-use App\Models\Services\Project\Services\Project\Rab;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RabLineFactory extends Factory

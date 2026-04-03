@@ -2,6 +2,8 @@
 
 namespace App\Models\Odoo\HR\Attendance;
 
+use App\Models\Odoo\HR\Employee\Employee;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,11 +12,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property int $odoo_id
  * @property int $employee_id
- * @property \Carbon\Carbon $check_in
- * @property \Carbon\Carbon $check_out
+ * @property Carbon $check_in
+ * @property Carbon $check_out
  * @property float $worked_hours
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Attendance extends Model
 {
@@ -51,6 +53,6 @@ class Attendance extends Model
 
     public function employee(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\HR\Employee\Employee::class);
+        return $this->belongsTo(Employee::class);
     }
 }

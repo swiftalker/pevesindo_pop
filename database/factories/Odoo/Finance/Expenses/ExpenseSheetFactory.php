@@ -2,8 +2,6 @@
 
 namespace Database\Factories\Odoo\Finance\Expenses;
 
-use App\Models\Odoo\Core\Odoo\Core\Company;
-use App\Models\Odoo\HR\Employee\Odoo\HR\Employee\Employee;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ExpenseSheetFactory extends Factory

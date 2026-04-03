@@ -2,7 +2,6 @@
 
 namespace Database\Factories\Odoo\Sales\Pricelist;
 
-use App\Models\Odoo\Core\Odoo\Core\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PricelistFactory extends Factory

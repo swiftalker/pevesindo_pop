@@ -2,8 +2,6 @@
 
 namespace Database\Factories\Odoo\Finance\Accounting;
 
-use App\Models\Odoo\Finance\Accounting\Odoo\Finance\Accounting\Invoice;
-use App\Models\Odoo\SupplyChain\Inventory\Odoo\SupplyChain\Inventory\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class InvoiceLineFactory extends Factory

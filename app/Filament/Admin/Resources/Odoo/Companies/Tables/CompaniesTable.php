@@ -3,9 +3,9 @@
 namespace App\Filament\Admin\Resources\Odoo\Companies\Tables;
 
 use App\Engine\Odoo\Jobs\System\SyncCompaniesJob;
+use Filament\Actions\Action;
+use Filament\Actions\ViewAction;
 use Filament\Notifications\Notification;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -22,35 +22,39 @@ class CompaniesTable
                     ->weight('bold'),
                 IconColumn::make('is_active')
                     ->label('Aktif')
-                    ->boolean()
-                    ->toggleable(isToggledHidden: false),
+                    ->boolean(),
                 TextColumn::make('code')
                     ->label('Kode')
                     ->badge()
-                    ->toggleable(isToggledHidden: true),
-                TextColumn::make('partner.name')
-                    ->label('Kontak Utama')
-                    ->toggleable(isToggledHidden: true),
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('currency')
                     ->label('Mata Uang')
                     ->badge()
                     ->color('gray')
-                    ->toggleable(isToggledHidden: true),
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('partner.name')
+                    ->label('Kontak')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('contacts_count')
+                    ->label('Kontak')
+                    ->counts('contacts')
+                    ->numeric()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('journals_count')
                     ->label('Jurnal')
                     ->counts('journals')
                     ->numeric()
-                    ->toggleable(isToggledHidden: true),
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('bank_accounts_count')
-                    ->label('Rekening Bank')
+                    ->label('Bank')
                     ->counts('bankAccounts')
                     ->numeric()
-                    ->toggleable(isToggledHidden: true),
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
-                    ->label('Terakhir Sync')
+                    ->label('Synced')
                     ->since()
                     ->sortable()
-                    ->toggleable(isToggledHidden: true),
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->recordActions([
                 ViewAction::make(),
@@ -64,22 +68,14 @@ class CompaniesTable
                     ->modalHeading('Sinkronisasi Master Data')
                     ->modalDescription('Perusahaan, kontak, jurnal, rekening bank, dan akun analitik akan ditarik dari Odoo.')
                     ->action(function () {
-                        try {
-                            dispatch(new SyncCompaniesJob(auth()->id()));
+                        $userId = auth()->id();
+                        dispatch(new SyncCompaniesJob($userId));
 
-                            Notification::make()
-                                ->title('Sync Started')
-                                ->body('Sinkronisasi dimulai. Data akan segera diperbarui.')
-                                ->success()
-                                ->send();
-                        } catch (\Throwable $e) {
-                            Notification::make()
-                                ->title('Sync Failed')
-                                ->body($e->getMessage())
-                                ->danger()
-                                ->persistent()
-                                ->send();
-                        }
+                        Notification::make()
+                            ->title('Sync Started')
+                            ->body('Sinkronisasi master data dimulai.')
+                            ->info()
+                            ->send();
                     }),
             ])
             ->defaultSort('name');

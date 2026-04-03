@@ -2,9 +2,6 @@
 
 namespace Database\Factories\Odoo\Services\FieldService;
 
-use App\Models\Odoo\Core\Odoo\Core\Company;
-use App\Models\Odoo\Core\Odoo\Core\Partner;
-use App\Models\Odoo\Services\Project\Odoo\Services\Project\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TaskFactory extends Factory

@@ -3,7 +3,6 @@
 namespace Database\Factories\HR\Attendance;
 
 use App\Models\HR\Employee\HR\Employee\Employee;
-use App\Models\Odoo\HR\Employee\Odoo\HR\Employee\Employee as OdooEmployee;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AttendanceFactory extends Factory

@@ -2,6 +2,9 @@
 
 namespace App\Models\Odoo\Sales\Order;
 
+use App\Models\Odoo\Core\Company;
+use App\Models\Odoo\Core\Partner;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,8 +19,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property float $amount_total
  * @property string $state
  * @property string $note
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class SaleOrder extends Model
 {
@@ -57,12 +60,12 @@ class SaleOrder extends Model
 
     public function partner(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Partner::class);
+        return $this->belongsTo(Partner::class);
     }
 
     public function company(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Company::class);
+        return $this->belongsTo(Company::class);
     }
 
     public function team(): BelongsTo

@@ -64,6 +64,16 @@ class OdooGateway
 
     /**
      * @param  array<int, array<int, mixed>>  $domain
+     * @param  array<string, mixed>  $options
+     * @return array<int, int>
+     */
+    public function search(string $model, array $domain, array $options = []): array
+    {
+        return $this->client->search($model, $domain, $options);
+    }
+
+    /**
+     * @param  array<int, array<int, mixed>>  $domain
      * @param  array<int, string>  $fields
      * @param  array<string, mixed>  $options
      * @return array<int, array<string, mixed>>

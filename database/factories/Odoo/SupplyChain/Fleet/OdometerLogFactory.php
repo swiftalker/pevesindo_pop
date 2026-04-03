@@ -2,7 +2,6 @@
 
 namespace Database\Factories\Odoo\SupplyChain\Fleet;
 
-use App\Models\Odoo\SupplyChain\Fleet\Odoo\SupplyChain\Fleet\Vehicle;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OdometerLogFactory extends Factory

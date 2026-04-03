@@ -2,6 +2,7 @@
 
 namespace App\Models\Odoo\SupplyChain\Inventory;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,8 +13,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $internal_reference
  * @property string $product_type
  * @property bool $is_active
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Product extends Model
 {

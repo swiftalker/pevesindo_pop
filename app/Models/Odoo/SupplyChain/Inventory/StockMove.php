@@ -2,6 +2,7 @@
 
 namespace App\Models\Odoo\SupplyChain\Inventory;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,8 +14,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $product_id
  * @property float $product_uom_qty
  * @property string $state
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class StockMove extends Model
 {
@@ -50,11 +51,11 @@ class StockMove extends Model
 
     public function picking(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\SupplyChain\Inventory\Picking::class);
+        return $this->belongsTo(Picking::class);
     }
 
     public function product(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\SupplyChain\Inventory\Product::class);
+        return $this->belongsTo(Product::class);
     }
 }

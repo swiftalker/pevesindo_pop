@@ -2,6 +2,7 @@
 
 namespace App\Models\Odoo\Finance\Accounting;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,10 +13,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $invoice_id
  * @property int $journal_id
  * @property float $amount
- * @property \Carbon\Carbon $payment_date
+ * @property Carbon $payment_date
  * @property string $payment_state
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Payment extends Model
 {
@@ -53,11 +54,11 @@ class Payment extends Model
 
     public function invoice(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Finance\Accounting\Invoice::class);
+        return $this->belongsTo(Invoice::class);
     }
 
     public function journal(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Finance\Accounting\Journal::class);
+        return $this->belongsTo(Journal::class);
     }
 }

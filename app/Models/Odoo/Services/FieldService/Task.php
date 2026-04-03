@@ -2,6 +2,10 @@
 
 namespace App\Models\Odoo\Services\FieldService;
 
+use App\Models\Odoo\Core\Company;
+use App\Models\Odoo\Core\Partner;
+use App\Models\Odoo\Services\Project\Project;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,8 +18,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $partner_id
  * @property string $name
  * @property bool $is_fsm
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Task extends Model
 {
@@ -53,16 +57,16 @@ class Task extends Model
 
     public function project(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Services\Project\Project::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function company(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Company::class);
+        return $this->belongsTo(Company::class);
     }
 
     public function partner(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\Core\Partner::class);
+        return $this->belongsTo(Partner::class);
     }
 }

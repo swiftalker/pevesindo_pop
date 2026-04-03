@@ -2,8 +2,6 @@
 
 namespace Database\Factories\Odoo\Sales\Crm;
 
-use App\Models\Odoo\Core\Odoo\Core\Company;
-use App\Models\Odoo\Sales\Crm\Odoo\Sales\Crm\Team;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LeadFactory extends Factory

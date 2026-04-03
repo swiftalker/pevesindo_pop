@@ -2,6 +2,8 @@
 
 namespace App\Models\Sales\Intent;
 
+use App\Models\Odoo\SupplyChain\Inventory\Product;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,8 +18,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property float $price_unit
  * @property float $subtotal
  * @property string $sync_state
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class IntentItem extends Model
 {
@@ -58,11 +60,11 @@ class IntentItem extends Model
 
     public function intent(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Sales\Intent\Intent::class);
+        return $this->belongsTo(Intent::class);
     }
 
     public function product(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Odoo\SupplyChain\Inventory\Product::class);
+        return $this->belongsTo(Product::class);
     }
 }
