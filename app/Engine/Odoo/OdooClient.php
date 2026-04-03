@@ -2,8 +2,8 @@
 
 namespace App\Engine\Odoo;
 
-use App\Engine\Odoo\Exceptions\OdooApiException;
-use App\Engine\Odoo\Models\OdooSyncTask;
+use App\Exceptions\Odoo\OdooApiException;
+use App\Models\Odoo\Sync\OdooSyncTask;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Client\Response;

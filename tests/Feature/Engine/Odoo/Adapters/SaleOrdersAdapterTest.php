@@ -1,7 +1,7 @@
 <?php
 
 use App\Engine\Odoo\Adapters\Sales\SaleOrders;
-use App\Engine\Odoo\Exceptions\OdooApiException;
+use App\Exceptions\Odoo\OdooApiException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 

@@ -6,12 +6,12 @@ use Illuminate\Broadcasting\Channel;
 use Illuminate\Support\Facades\Log;
 
 /**
- * PubSub helper for Odoo sync events.
+ * Event broadcasting helper for Odoo sync processes.
  *
- * Sync workers broadcast when they start/finish, and Livewire components
- * subscribe to auto-refresh their data without page reload.
+ * Sync workers dispatch lifecycle events (start/finish), and Livewire components
+ * listen via Laravel Echo to automatically refresh data without page reload.
  *
- * Topics follow the pattern: "odoo:sync:{domain}" to match the Elixir convention.
+ * Channels follow the pattern: "odoo.sync.{domain}".
  */
 class SyncEvents
 {

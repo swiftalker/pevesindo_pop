@@ -1,8 +1,8 @@
 <?php
 
-use App\Engine\Odoo\Enums\SyncTaskStatus;
-use App\Engine\Odoo\Enums\SyncTaskType;
-use App\Engine\Odoo\Models\OdooSyncTask;
+use App\Enums\Odoo\SyncTaskStatus;
+use App\Enums\Odoo\SyncTaskType;
+use App\Models\Odoo\Sync\OdooSyncTask;
 
 it('can create a sync task with pending status', function () {
     $task = OdooSyncTask::create([

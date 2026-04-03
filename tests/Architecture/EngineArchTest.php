@@ -4,8 +4,8 @@ arch('engine adapters do not depend on controllers')
     ->expect('App\Engine\Odoo\Adapters')
     ->not->toUse('App\Http\Controllers');
 
-arch('engine jobs implement ShouldQueue')
-    ->expect('App\Engine\Odoo\Jobs')
+arch('odoo jobs implement ShouldQueue')
+    ->expect('App\Jobs\Odoo')
     ->toImplement('Illuminate\Contracts\Queue\ShouldQueue');
 
 arch('odoo events use Dispatchable trait')
@@ -16,8 +16,8 @@ arch('engine does not depend on Filament')
     ->expect('App\Engine\Odoo')
     ->not->toUse('Filament');
 
-arch('engine models live in Engine namespace')
-    ->expect('App\Engine\Odoo\Models')
+arch('odoo sync models extend Model')
+    ->expect('App\Models\Odoo\Sync')
     ->toExtend('Illuminate\Database\Eloquent\Model');
 
 arch('listeners live in App\Listeners\Odoo')

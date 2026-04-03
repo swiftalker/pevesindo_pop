@@ -1,7 +1,7 @@
 <?php
 
 use App\Engine\Odoo\Gateway;
-use App\Engine\Odoo\Jobs\Core\CompanySync;
+use App\Jobs\Odoo\Core\CompanySync;
 use App\Models\Odoo\Core\Company;
 use App\Models\Odoo\Core\Partner;
 

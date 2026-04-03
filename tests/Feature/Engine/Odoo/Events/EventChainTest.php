@@ -1,10 +1,10 @@
 <?php
 
-use App\Engine\Odoo\Enums\SyncTaskStatus;
-use App\Engine\Odoo\Jobs\Sales\SaleOrderPush;
-use App\Engine\Odoo\Models\OdooSyncTask;
+use App\Enums\Odoo\SyncTaskStatus;
 use App\Events\Odoo\OdooSyncRequested;
+use App\Jobs\Odoo\Sales\SaleOrderPush;
 use App\Listeners\Odoo\DispatchOdooSyncJob;
+use App\Models\Odoo\Sync\OdooSyncTask;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
 

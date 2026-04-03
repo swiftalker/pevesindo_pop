@@ -2,7 +2,7 @@
 
 namespace App\Events\Odoo;
 
-use App\Engine\Odoo\Models\OdooSyncTask;
+use App\Models\Odoo\Sync\OdooSyncTask;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;

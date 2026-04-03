@@ -2,11 +2,11 @@
 
 namespace App\Listeners\Odoo;
 
-use App\Engine\Odoo\Enums\SyncTaskStatus;
-use App\Engine\Odoo\Enums\SyncTaskType;
-use App\Engine\Odoo\Jobs\Sales\SaleOrderPush;
-use App\Engine\Odoo\Models\OdooSyncTask;
+use App\Enums\Odoo\SyncTaskStatus;
+use App\Enums\Odoo\SyncTaskType;
 use App\Events\Odoo\OdooSyncRequested;
+use App\Jobs\Odoo\Sales\SaleOrderPush;
+use App\Models\Odoo\Sync\OdooSyncTask;
 use Illuminate\Support\Facades\Log;
 
 /**

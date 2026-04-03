@@ -1,12 +1,12 @@
 <?php
 
 use App\Engine\Odoo\Adapters\Sales\SaleOrders;
-use App\Engine\Odoo\Enums\SyncTaskStatus;
-use App\Engine\Odoo\Enums\SyncTaskType;
-use App\Engine\Odoo\Jobs\Sales\SaleOrderPush;
-use App\Engine\Odoo\Models\OdooSyncTask;
+use App\Enums\Odoo\SyncTaskStatus;
+use App\Enums\Odoo\SyncTaskType;
 use App\Events\Odoo\OdooSyncCompleted;
 use App\Events\Odoo\OdooSyncFailed;
+use App\Jobs\Odoo\Sales\SaleOrderPush;
+use App\Models\Odoo\Sync\OdooSyncTask;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;

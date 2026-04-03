@@ -1,8 +1,8 @@
 <?php
 
-use App\Engine\Odoo\Exceptions\OdooApiException;
-use App\Engine\Odoo\Models\OdooSyncTask;
 use App\Engine\Odoo\OdooClient;
+use App\Exceptions\Odoo\OdooApiException;
+use App\Models\Odoo\Sync\OdooSyncTask;
 use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {

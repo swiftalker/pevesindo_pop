@@ -2,16 +2,18 @@
 
 namespace App\Engine\Odoo\Adapters\Sales;
 
-use App\Engine\Odoo\Exceptions\OdooApiException;
 use App\Engine\Odoo\Gateway;
+use App\Exceptions\Odoo\OdooApiException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 
 /**
- * Odoo integration adapter for Sale Orders (sale.order).
+ * Event broadcasting helper for Odoo sync processes.
  *
- * Mirrors Center.Integration.Odoo.SaleOrders from the Elixir reference.
- * Maps local data → Odoo fields, calls Gateway, updates local records.
+ * Sync workers dispatch lifecycle events (start/finish), and Livewire components
+ * listen via Laravel Echo to automatically refresh data without page reload.
+ *
+ * Channels follow the pattern: "odoo.sync.{domain}".
  */
 class SaleOrders
 {
