@@ -1,5 +1,5 @@
 ---
-name: Odoo Integration Pattern
+name: odoo-integration
 description: >
   Rules for integrating with Odoo ERP inside a Laravel (Pop-App) project.
   Use this skill BEFORE writing any code that touches Odoo — including new

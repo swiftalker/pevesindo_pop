@@ -16,6 +16,8 @@
         "livewire-development",
         "pest-testing",
         "tailwindcss-development",
-        "echo-development"
+        "echo-development",
+        "filament-development",
+        "odoo-integration"
     ]
 }

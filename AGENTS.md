@@ -1,10 +1,6 @@
 <laravel-boost-guidelines>
 === foundation rules ===
 
-# BIG NOTE
-1. Keep the context limit below 50%. Clear out unused content in the current progress.
-2. Don't forget to clean up old contexts that are no longer used, so that the context limit in the workspace remains spacious.
-
 # Laravel Boost Guidelines
 
 The Laravel Boost guidelines are specifically curated by Laravel maintainers for this application. These guidelines should be followed closely to ensure the best experience when building Laravel applications.
@@ -36,12 +32,13 @@ This application is a Laravel application and its main Laravel ecosystems packag
 This project has domain-specific skills available. You MUST activate the relevant skill whenever you work in that domain—don't wait until you're stuck.
 
 - `laravel-best-practices` — Apply this skill whenever writing, reviewing, or refactoring Laravel PHP code. This includes creating or modifying controllers, models, migrations, form requests, policies, jobs, scheduled commands, service classes, and Eloquent queries. Triggers for N+1 and query performance issues, caching strategies, authorization and security patterns, validation, error handling, queue and job configuration, route definitions, and architectural decisions. Also use for Laravel code reviews and refactoring existing Laravel code to follow best practices. Covers any task involving Laravel backend PHP code patterns.
-- `filament-development` — Apply this skill whenever writing, reviewing, or refactoring FilamentPHP code. This includes creating or modifying resources, tables, schemas, forms, infolists, actions, notifications, widgets, configuration, navigation, users, styling, advanced things, testing, information about components. Always refer to the official documentation: https://filamentphp.com/docs/5.x
-- `odoo-development` — Apply this skill whenever writing, reviewing, or refactoring Odoo code. This includes creating or modifying modules, models, controllers, views, XML, QWeb, Python, migrations, security, access control, workflows, reports, translations, testing, and Odoo-specific concepts like ORM, RPC, and the Odoo architecture. Always refer to the official documentation: https://www.odoo.com/documentation
+- `fluxui-development` — Use this skill for Flux UI development in Livewire applications only. Trigger when working with <flux:*> components, building or customizing Livewire component UIs, creating forms, modals, tables, or other interactive elements. Covers: flux: components (buttons, inputs, modals, forms, tables, date-pickers, kanban, badges, tooltips, etc.), component composition, Tailwind CSS styling, Heroicons/Lucide icon integration, validation patterns, responsive design, and theming. Do not use for non-Livewire frameworks or non-component styling.
 - `livewire-development` — Use for any task or question involving Livewire. Activate if user mentions Livewire, wire: directives, or Livewire-specific concepts like wire:model, wire:click, wire:sort, or islands, invoke this skill. Covers building new components, debugging reactivity issues, real-time form validation, drag-and-drop, loading states, migrating from Livewire 3 to 4, converting component formats (SFC/MFC/class-based), and performance optimization. Do not use for non-Livewire reactive UI (React, Vue, Alpine-only, Inertia.js) or standard Laravel forms without Livewire.
 - `pest-testing` — Use this skill for Pest PHP testing in Laravel projects only. Trigger whenever any test is being written, edited, fixed, or refactored — including fixing tests that broke after a code change, adding assertions, converting PHPUnit to Pest, adding datasets, and TDD workflows. Always activate when the user asks how to write something in Pest, mentions test files or directories (tests/Feature, tests/Unit, tests/Browser), or needs browser testing, smoke testing multiple pages for JS errors, or architecture tests. Covers: it()/expect() syntax, datasets, mocking, browser testing (visit/click/fill), smoke testing, arch(), Livewire component tests, RefreshDatabase, and all Pest 4 features. Do not use for factories, seeders, migrations, controllers, models, or non-test PHP code.
 - `tailwindcss-development` — Always invoke when the user's message includes 'tailwind' in any form. Also invoke for: building responsive grid layouts (multi-column card grids, product grids), flex/grid page structures (dashboards with sidebars, fixed topbars, mobile-toggle navs), styling UI components (cards, tables, navbars, pricing sections, forms, inputs, badges), adding dark mode variants, fixing spacing or typography, and Tailwind v3/v4 work. The core use case: writing or fixing Tailwind utility classes in HTML templates (Blade, JSX, Vue). Skip for backend PHP logic, database queries, API routes, JavaScript with no HTML/CSS component, CSS file audits, build tool configuration, and vanilla CSS.
 - `echo-development` — Develops real-time broadcasting with Laravel Echo. Activates when setting up broadcasting (Reverb, Pusher, Ably); creating ShouldBroadcast events; defining broadcast channels (public, private, presence, encrypted); authorizing channels; configuring Echo; listening for events; implementing client events (whisper); setting up model broadcasting; broadcasting notifications; or when the user mentions broadcasting, Echo, WebSockets, real-time events, Reverb, or presence channels.
+- `filament-development` — This guide covers best practices, rules, and quick references for building admin panels with FilamentPHP v5.x. Apply this skill whenever writing, reviewing, or refactoring FilamentPHP code. This include about resources, tables, schemas, forms, infolists, actions, notifications, widgets, configuration, navigation, users, styling, advanced things, testing, information about components. Always refer to the official documentation: https://filamentphp.com/docs/5.x
+- `odoo-integration` — Rules for integrating with Odoo ERP inside a Laravel (Pop-App) project. Use this skill BEFORE writing any code that touches Odoo — including new sync features, report downloads, domain actions, job dispatching, or payload mapping. Stack: Laravel 13+, Livewire, Laravel Queues, Odoo 19.x (JSON-2 External API + Web Session for reports).
 
 ## Conventions
 
@@ -87,7 +84,7 @@ This project has domain-specific skills available. You MUST activate the relevan
 - Always use `search-docs` before making code changes. Do not skip this step. It returns version-specific docs based on installed packages automatically.
 - Pass a `packages` array to scope results when you know which packages are relevant.
 - Use multiple broad, topic-based queries: `['rate limiting', 'routing rate limiting', 'routing']`. Expect the most relevant results first.
-- Do not add package names to queries because package info is already shared. Use `test resource table`, not `filament 5 test resource table`.
+- Do not add package names to queries because package info is already shared. Use `test resource table`, not `filament 4 test resource table`.
 
 ### Search Syntax
 
@@ -181,3 +178,4 @@ This project has domain-specific skills available. You MUST activate the relevan
 - Do NOT delete tests without approval.
 
 </laravel-boost-guidelines>
+

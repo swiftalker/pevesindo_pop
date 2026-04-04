@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Engine\Odoo\Pipeline;
+namespace App\Engine\Odoo;
 
 use App\Engine\Odoo\Enums\SyncTaskStatus;
 use App\Engine\Odoo\Enums\SyncTaskType;
