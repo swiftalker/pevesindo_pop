@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('plan_id');
             $table->foreignId('company_id')->nullable();
             $table->string('name');
-            $table->string('code', 20)->nullable();
+            $table->string('code', 50)->nullable();
             $table->timestamps();
         });
 

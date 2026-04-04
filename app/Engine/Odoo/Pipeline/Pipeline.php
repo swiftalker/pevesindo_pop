@@ -9,6 +9,7 @@ use App\Engine\Odoo\Events\OdooSyncFailed;
 use App\Engine\Odoo\SyncEvents;
 use App\Models\Odoo\Sync\OdooSyncTask;
 use Closure;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class Pipeline
@@ -72,7 +73,7 @@ class Pipeline
         SyncEvents::logStarted($this->topic);
 
         try {
-            $result = $callback();
+            $result = DB::transaction(fn () => $callback());
 
             $count = $result['synced'] ?? $result['pushed'] ?? 0;
 

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
             $table->integer('odoo_id')->nullable()->index();
-            $table->foreignId('company_id');
+            $table->foreignId('company_id')->nullable();
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone', 30)->nullable();
